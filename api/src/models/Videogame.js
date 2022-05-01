@@ -8,5 +8,37 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    releaseDate: {
+      type: DataTypes.DATE
+    },
+    rating: {
+      type: DataTypes.DECIMAL
+    },
+    platforms: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    img: {
+      type: DataTypes.STRING
+    }
+
   });
 };
+
+
+// ID: * No puede ser un ID de un videojuego ya existente en la API rawg
+// Nombre *
+// Descripción *
+// Fecha de lanzamiento
+// Rating
+// Plataformas *
