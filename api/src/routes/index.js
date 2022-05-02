@@ -20,10 +20,10 @@ const router = Router();
 // Si no existe ningún videojuego mostrar un mensaje adecuado
 
 router.get('/videogames', async (req, res) => {
-    const name = req.query.name;
-    if(name){
+    // const name = req.query.name;
+    // if(name){
         
-    }
+    // }
 
     let apiVideogames = await getApiVideogames();
     
