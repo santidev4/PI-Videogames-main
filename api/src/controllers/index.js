@@ -8,7 +8,7 @@ const { Videogames, Genres } = require('../db')
 
 const { API_KEY } = process.env
 
-const getApiVideogames =  () => {
+const getApiVideogames = async () => {
 
     // ASYNC / AWAIT CON ID
 
@@ -120,27 +120,38 @@ const getApiVideogames =  () => {
 
 
         try {
-            const pages = 2;
+            const pages = 5;
             const response = [];
             const url = 'https://api.rawg.io/api/games?key=79d4844fcfec46a0b1a2be9f7b9a19dd&page=';
 
             for (let i = 1; i <= pages; i++) {
-                let request = axios(`${url+i}`)
+                let request = await axios(`${url+i}`)
                     .then(res=> res.data)
                     .then(res => res.results)
                     .catch(err => console.log(err))
-                    response.push(request)
+                response.push(request);
             }
 
-            return response.map(arr => {
-                console.log(arr);
-                
+            const videogames = [];
+            response.map(arr => {
+                arr.map(el => {
+                    videogames.push({
+                        name: el.name,
+                        id: el.id,
+                        img: el.background_image,
+                        description: el.description,
+                        released: el.released,
+                        rating: el.rating,
+                        platforms: el.platforms.map(el => el.platform.name)
+                    })
+                })
             })
 
+            return videogames
+            
         } catch (error) {
             console.log(error);
         }
-
 };
 
 
