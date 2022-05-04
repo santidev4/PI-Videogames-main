@@ -132,17 +132,16 @@ const getApiVideogames = async () => {
                 response.push(request);
             }
 
+            //Imagen
+            // Nombre
+            // Géneros
             const videogames = [];
             response.map(arr => {
                 arr.map(el => {
                     videogames.push({
                         name: el.name,
-                        id: el.id,
                         img: el.background_image,
-                        description: el.description,
-                        released: el.released,
-                        rating: el.rating,
-                        platforms: el.platforms.map(el => el.platform.name)
+                        genres: el.genres.map(el => el.name)
                     })
                 })
             })
@@ -155,6 +154,16 @@ const getApiVideogames = async () => {
 };
 
 
+
+// GET /videogames?name="...":
+// Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
+// Si no existe ningún videojuego mostrar un mensaje adecuado
+const getVideogamesByName = async () => {
+
+}
+
+
 module.exports = {
-    getApiVideogames
+    getApiVideogames,
+    getVideogamesByName
 }
