@@ -7,6 +7,7 @@ const { Videogames, Genres } = require('../db')
 // GET https://api.rawg.io/api/games/{id}
 
 const { API_KEY } = process.env
+const url = 'https://api.rawg.io/api/games';
 
 const getApiVideogames = async () => {
 
@@ -158,12 +159,57 @@ const getApiVideogames = async () => {
 // GET /videogames?name="...":
 // Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
 // Si no existe ningún videojuego mostrar un mensaje adecuado
-const getVideogamesByName = async () => {
+const getVideogamesByName = (arr, name) => {
+    return arr.filter(el => el.name.toLowerCase().split(' ').includes(name.toLowerCase())).slice(0, 15)
+};
+
+// GET /videogame/{idVideogame}:
+// Obtener el detalle de un videojuego en particular
+// Debe traer solo los datos pedidos en la ruta de detalle de videojuego
+// Incluir los géneros asociados
+// [ ] Los campos mostrados en la ruta principal para cada videojuegos (imagen, nombre, y géneros)
+// [ ] Descripción
+// [ ] Fecha de lanzamiento
+// [ ] Rating
+// [ ] Plataformas
+
+const getVideoGameDetailById = async (id) => {
+    try {
+        let request = await axios(`${url}/${id}?key=${API_KEY}`)
+            
+        console.log(request.data)
+        const { img,name, genres, description, released, rating, platforms } = request.data;
+
+        return {
+            img,
+            name,
+            genres: genres.map( el => el.name),
+            description,
+            released,
+            rating,
+            platforms: platforms.map(el => el.platform.name)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// GET /genres:
+// Obtener todos los tipos de géneros de videojuegos posibles
+// En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
+
+const getGenres = async () => {
+    const url = `https://api.rawg.io/api/genres?key=${API_KEY}`;
+    let request = await axios(url);
+
+    const genres = request.data.results.map(el => el.name);
+    return genres;
 
 }
 
-
 module.exports = {
     getApiVideogames,
-    getVideogamesByName
+    getVideogamesByName,
+    getVideoGameDetailById,
+    getGenres
 }
