@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getApiVideogames, getVideogamesByName, getVideoGameDetailById, getGenres } = require('../controllers/index')
+const { getApiVideogames, getVideogamesByName, getVideoGameDetailById, getGenres, postGame } = require('../controllers/index')
 const axios = require('axios');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -56,5 +56,11 @@ router.get('/genres', async (req, res) => {
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
 // Crea un videojuego en la base de datos
 
+router.post('/videogame', async (req, res) => {
+    const { name, description, platforms } = req.body;
+    const videogameCreated = await postGame(name, description, platforms);
+
+    res
+})
 
 module.exports = router;

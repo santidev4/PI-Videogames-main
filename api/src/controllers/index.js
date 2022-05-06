@@ -1,5 +1,5 @@
 const {default: axios} = require('axios');
-const { Videogames, Genres } = require('../db') 
+const { Videogame, Genre } = require('../db') 
 
 // GET https://api.rawg.io/api/games
 // GET https://api.rawg.io/api/games?search={game}
@@ -200,16 +200,39 @@ const getVideoGameDetailById = async (id) => {
 
 const getGenres = async () => {
     const url = `https://api.rawg.io/api/genres?key=${API_KEY}`;
-    let request = await axios(url);
+    let dbGenres = await Genre.findAll();
 
-    const genres = request.data.results.map(el => el.name);
-    return genres;
+    if(!dbGenres.length){
+        try {
+            let request = await axios(url).then(res => res.data.results);
 
+            request.forEach( async el => {
+                await Genre.findOrCreate({
+                    where: {
+                        name: el.name
+                    }
+                })
+            });
+            return await Genre.findAll()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    else return dbGenres;
+};
+
+const postGame = async (name, description, platforms) => {
+    const videogameCreated = await Videogame.create({
+        name,
+        description,
+        platforms
+    })
 }
 
 module.exports = {
     getApiVideogames,
     getVideogamesByName,
     getVideoGameDetailById,
-    getGenres
+    getGenres,
+    postGame
 }
