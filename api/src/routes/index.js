@@ -57,10 +57,11 @@ router.get('/genres', async (req, res) => {
 // Crea un videojuego en la base de datos
 
 router.post('/videogame', async (req, res) => {
-    const { name, description, platforms } = req.body;
+    let { name, description, platforms } = req.body;
+    console.log(req.body);
     const videogameCreated = await postGame(name, description, platforms);
 
-    res
+    res.send(videogameCreated);
 })
 
 module.exports = router;

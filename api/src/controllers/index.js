@@ -222,11 +222,13 @@ const getGenres = async () => {
 };
 
 const postGame = async (name, description, platforms) => {
-    const videogameCreated = await Videogame.create({
+    let videogameCreated = await Videogame.create({
         name,
         description,
         platforms
     })
+
+    return videogameCreated;
 }
 
 module.exports = {
