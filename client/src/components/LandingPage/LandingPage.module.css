@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap');
 
 .container{
     height: 100vh;
@@ -21,7 +21,8 @@
     align-content: center;
 }
 .data{
-    margin: 10rem;
+    margin: 5rem;
+    padding: 2rem;
 }
 .titulo, .description{
     color: #ddd;
@@ -30,21 +31,32 @@
 .titulo{
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    font-size: 100px;
-    color: rgb(230, 217, 217)
+    font-size: 5rem;
+    color: rgb(230, 217, 217);
+    margin: 0;
 }
 .description{
     color: rgb(230, 217, 217);
-    margin-bottom: 1rem;
+    margin: 0 0 3rem 0;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+.link{
+    text-decoration: none;
 }
 .btn{
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    padding: 1rem 1.5rem;
-    background-color: #F5FFFE;
-    color: #26A69A;
-    border-radius: .5rem;
+    margin: 3rem 0 3rem 0;
+    padding: 0.5rem 1.5rem;
+    background-color: #243836;
+    color: #36849C;
+    border-radius: .7rem;
     font-weight: 500;
-    
+    font-size: 2rem;
+}
+.btn:hover{
+    background-color: #040101;
+    color: #854A80;
 }

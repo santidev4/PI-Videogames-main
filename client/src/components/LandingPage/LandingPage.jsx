@@ -10,8 +10,8 @@ export default function LandingPage() {
                     <div className={style.data}>
                         <h1 className={style.titulo}>Bienvenidos</h1>
                         <p className={style.description}>Acá podrás buscar tus juegos favoritos</p>
-                        <Link to='/home'>
-                            <button className={style.btn}>Ingresar</button>
+                        <Link to='/home' className={style.link}>
+                            <span className={style.btn}>Ingresar</span>
                         </Link>
                     </div>
                 </div>
