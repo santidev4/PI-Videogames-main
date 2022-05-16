@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getVideogames } from "../../redux/actions";
+import React from "react";
 
-export default function Card({name, img, genre}){
+export default function Card({name, img, genres}){
 
-    const allVideogames = useSelector(state => state.videogames)
-    console.log(allVideogames);
+    console.log('genres', genres)
     
     return(
         <div>
-            <img src={img} alt="" />
+            <img src={img} alt=""  width='250px'/>
             <h3> {name} </h3>
-            <span> {genre} </span>
+            <span> {
+                    genres?.map(el=> {
+                        return `${el} `
+                    })
+                    } </span>           
         </div> 
     )
 }
