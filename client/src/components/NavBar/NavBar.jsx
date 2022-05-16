@@ -3,6 +3,9 @@ import SearchBar from "../SearchBar/SearchBar";
 
 export default function NavBar(){
     return(
-        <SearchBar />
+        <>
+            <SearchBar />
+            <button>A-Z</button>
+        </>
     )
 }
