@@ -1,0 +1,15 @@
+.btn{
+    position: relative;
+    border-radius: 25px 25px 25px 25px;
+    width: 75px;
+    height: 40px;
+    border: 1px solid #ff5722;
+    outline: none;
+    cursor: pointer;
+    background: #fff;
+    color: #ff5722;
+}
+.btn:hover{
+    background: #ff5722;
+    color: #fff
+}

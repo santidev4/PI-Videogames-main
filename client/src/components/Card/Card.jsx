@@ -1,8 +1,6 @@
 import React from "react";
 
 export default function Card({name, img, genres}){
-
-    console.log('genres', genres)
     
     return(
         <div>
