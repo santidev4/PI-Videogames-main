@@ -1,9 +1,18 @@
+.container{
+    display: flex;
+    position: relative;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);    
+    background: rgba(2,0,36, 0.8);
+    padding: 20px;
+    justify-content: space-between;
+}
+
 .btn{
     position: relative;
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 10px;
     width: 75px;
-    height: 40px;
-    border: 1px solid #ff5722;
+    height: 45px;
+    border: 2px solid #ff5722;
     outline: none;
     cursor: pointer;
     background: #fff;
@@ -13,3 +22,35 @@
     background: #ff5722;
     color: #fff
 }
+.filtros{
+    justify-content: center;
+}
+
+/* Select */
+
+select{
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem;
+    padding: 0.6rem 1.5rem;
+    background: #ffc107;
+    color: #fff;
+    border-radius: 5px;
+    /* appearance: none; */
+    border: 0;
+    transition: 0.5s;
+}
+select:hover{
+    background: #ff5722;
+}
+
+select option:checked { 
+    background: #ff5722;
+}
+select.decorated option:hover{
+    background: #ffc107;
+}
+
+.custom_select{
+    position: relative;
+}
+

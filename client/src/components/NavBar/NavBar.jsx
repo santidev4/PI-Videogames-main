@@ -4,9 +4,17 @@ import style from "../NavBar/NavBar.module.css"
 
 export default function NavBar(){
     return(
-        <>
+        <div className={style.container}>
+            <div className={style.filtros}>
+                <button className={style.btn}>A-Z</button>
+                <div className={style.custom_select}>
+                    <select>
+                        <option value="A-Z">A-Z</option>
+                        <option value="Z-A">Z-A</option>
+                    </select>
+                </div>
+            </div>
             <SearchBar />
-            <button className={style.btn}>A-Z</button>
-        </>
+        </div>
     )
 }
