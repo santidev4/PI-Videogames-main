@@ -10,6 +10,7 @@
 .btn{
     position: relative;
     border-radius: 10px;
+    margin: 0 10px 0 10px;
     width: 75px;
     height: 45px;
     border: 2px solid #ff5722;
@@ -17,13 +18,17 @@
     cursor: pointer;
     background: #fff;
     color: #ff5722;
+    transition: 0.5s;
 }
 .btn:hover{
     background: #ff5722;
     color: #fff
 }
 .filtros{
-    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 /* Select */
