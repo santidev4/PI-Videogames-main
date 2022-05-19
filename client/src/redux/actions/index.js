@@ -8,4 +8,14 @@ export function getVideogames(){
             payload: videogames.data
         })
     }
-}
+};
+
+export function getGenres(){
+    return async function(dispatch){
+        const genres = await axios('http://localhost:3001/genres');
+        return dispatch({
+            type: 'GET_GENRES',
+            payload: genres.data
+        })
+    }
+};
