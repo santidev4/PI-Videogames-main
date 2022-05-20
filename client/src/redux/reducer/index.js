@@ -12,7 +12,7 @@ function rootReducer(state = initialState, action) {
             };
         case 'GET_GENRES':
             return{
-                state,
+                ...state,
                 genres: action.payload
             }
     

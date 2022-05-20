@@ -10,22 +10,23 @@ export default function Home(){
     const dispatch = useDispatch();
     const allVideogames = useSelector(state => state.videogames);
     const genres = useSelector(state => state.genres);
-    
+
     useEffect(() => {
-        dispatch(getVideogames())
-    }, [dispatch])
+        dispatch(getVideogames());
+    }, [dispatch]);
     
     useEffect(()=>{
-        dispatch(getGenres())
-    }, [dispatch])
+        dispatch(getGenres());
+    }, [dispatch]);
     
-    const tenVideogames = allVideogames.slice(0, 10);
+    
+    
+    const tenVideogames = allVideogames.slice(0, 3);
 
-    console.log('genres', genres)
-
+    
     return(
         <>
-            <NavBar />
+            <NavBar genres={genres} />
             <Cards data={tenVideogames} />
         </>
     )
