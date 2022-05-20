@@ -21,7 +21,7 @@ export default function Home(){
     
     
     
-    const tenVideogames = allVideogames.slice(0, 3);
+    const tenVideogames = allVideogames.slice(0, 5);
 
     
     return(
