@@ -1,16 +1,21 @@
 import React from "react";
+import style from "../Card/Card.module.css";
 
 export default function Card({name, img, genres}){
     
     return(
-        <div>
-            <img src={img} alt=""  width='250px'/>
-            <h3> {name} </h3>
-            <span> {
+        <div className={style.card}>
+            <figure>
+                <img src={img} alt=""/>
+            </figure>
+            <div className={style.contenido}>
+                <h3> {name} </h3>
+                <span> {
                     genres?.map(el=> {
                         return `${el} `
                     })
-                    } </span>           
+                } </span>           
+            </div>
         </div> 
     )
 }

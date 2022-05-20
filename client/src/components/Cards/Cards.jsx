@@ -1,31 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Card from "../Card/Card";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getVideogames } from "../../redux/actions"
+import style from "../Cards/Cards.module.css"
 
 export default function Cards(props){
-    // const videogames = useSelector(state => state.videogames);
-    // const dispatch = useDispatch();
-
-    
-    // useEffect(()=> {
-    //     dispatch(getVideogames())
-    // }, [dispatch])
-    
-
-    // const tenVideogames = videogames.slice(0,10);
-    // console.log('tenVideogames', tenVideogames)
+ 
 
     console.log('props', props)
     return(
-        <>
+        <div className={style.card_container}>
         
             {
                 props.data?.map((el, i) => (
-
-                    <Card name={el.name} img={el.img} genres={el.genres} key={i}/>
+                    <Link to={`/card/${el.id}`}>
+                        <Card name={el.name} img={el.img} genres={el.genres} key={i}/>
+                    </Link>
                 ))
             }
-        </>
+        </div>
     )
 }

@@ -1,0 +1,11 @@
+.card_container{
+    width: 100%;
+    display: flex;
+    max-width: 1100px;
+    cursor: pointer;
+    transition: all 0.5 ease;
+}
+a{
+    text-decoration: none;
+
+}

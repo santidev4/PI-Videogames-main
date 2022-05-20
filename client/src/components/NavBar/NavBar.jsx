@@ -7,8 +7,6 @@ import style from "../NavBar/NavBar.module.css"
 
 export default function NavBar({genres}){
 
-    console.log('genres', genres[0])
-
     return(
         <div className={style.container}>
             <div className={style.filtros}>

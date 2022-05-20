@@ -140,6 +140,7 @@ const getApiVideogames = async () => {
             response.map(arr => {
                 arr.map(el => {
                     videogames.push({
+                        id: el.id,
                         name: el.name,
                         img: el.background_image,
                         genres: el.genres.map(el => el.name)
