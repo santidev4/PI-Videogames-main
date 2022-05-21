@@ -5,16 +5,17 @@ export default function Card({name, img, genres}){
     
     return(
         <div className={style.card}>
-            <figure>
+            <div>
                 <img src={img} alt=""/>
-            </figure>
+            </div>
             <div className={style.contenido}>
                 <h3> {name} </h3>
                 <span> {
-                    genres?.map(el=> {
+                        genres?.map(el=> {
                         return `${el} `
-                    })
-                } </span>           
+                        })
+                        } 
+                </span>           
             </div>
         </div> 
     )
