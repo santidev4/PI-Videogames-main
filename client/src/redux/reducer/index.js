@@ -14,6 +14,14 @@ function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 genres: action.payload
+            };
+        case 'FILTER_BY_GENRE':
+            const filteredVideogames = state.videogames.filter(el => el.genres.includes(action.payload))
+
+
+            return{
+                ...state,
+                videogames: filteredVideogames
             }
     
         default:

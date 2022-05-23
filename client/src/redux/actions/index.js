@@ -19,3 +19,10 @@ export function getGenres(){
         })
     }
 };
+
+export function filterByGenres(payload){
+    return{
+        type: 'FILTER_BY_GENRE',
+        payload
+    }
+}
