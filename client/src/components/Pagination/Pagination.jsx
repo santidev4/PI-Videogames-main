@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Pagination({videogamesPerPage, allVideogames, paginationFunction}){
     const pageNumbers = [];
-    for (let i = 1; i < Math.ceil(allVideogames/videogamesPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(allVideogames/videogamesPerPage); i++) {
         pageNumbers.push(i);
     }
 

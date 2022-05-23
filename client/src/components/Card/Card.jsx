@@ -6,7 +6,7 @@ export default function Card({name, img, genres}){
     return(
         <div className={style.card}>
             <div>
-                <img src={img} alt=""/>
+                <img src={img} alt="" loading="lazy"/>
             </div>
             <div className={style.contenido}>
                 <h3> {name} </h3>

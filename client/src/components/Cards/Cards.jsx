@@ -13,7 +13,7 @@ export default function Cards(props){
             {
                 props.data?.map((el, i) => (
                     <Link to={`/card/${el.id}`}>
-                        <Card name={el.name} img={el.img} genres={el.genres} key={i}/>
+                        <Card name={el.name} img={el.img} genres={el.genres} key={el.id} />
                     </Link>
                 ))
             }
