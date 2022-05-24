@@ -5,8 +5,7 @@ import style from "../NavBar/NavBar.module.css"
 // Filtros: por genero - creados o existentes
 // Ordenamientos: A-Z asc-desc  -   rating asc-desc
 
-export default function NavBar({genres}){
-
+export default function NavBar({genres, handleFilterByGenre}){
     return(
         <div className={style.container}>
             <div className={style.filtros}>
@@ -15,12 +14,11 @@ export default function NavBar({genres}){
                     <button className={style.btn} value='DESC' >Z - A ↓</button>
                 </div>
                 <div className={style.custom_select}>
-                    <select>
-                        {/* <option value="A-Z">A-Z</option>
-                        <option value="Z-A">Z-A</option> */}
+                    <select onChange={(e) => handleFilterByGenre(e)}>
+                        <option value="All">All</option>
                         {
                             genres?.map(el => (
-                                <option value={el.name} key={el.id}>{el.name}</option>
+                                <option value={el.name} key={el.id}> {el.name} </option>
                             ))
                         }
                     </select>

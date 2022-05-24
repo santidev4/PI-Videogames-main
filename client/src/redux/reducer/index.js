@@ -1,5 +1,6 @@
 const initialState = {
     videogames: [],
+    allVideogames: [],
     genres: []
 };
 
@@ -8,7 +9,8 @@ function rootReducer(state = initialState, action) {
         case 'GET_VIDEOGAMES':
             return{
                 ...state,
-                videogames: action.payload
+                videogames: action.payload,
+                allVideogames: action.payload
             };
         case 'GET_GENRES':
             return{
@@ -16,12 +18,14 @@ function rootReducer(state = initialState, action) {
                 genres: action.payload
             };
         case 'FILTER_BY_GENRE':
-            const filteredVideogames = state.videogames.filter(el => el.genres.includes(action.payload))
-
+            const allVideogames = state.videogames;
+            let filteredVideogamesByGenre;
+            if(action.payload === 'All') filteredVideogamesByGenre = allVideogames;
+            else filteredVideogamesByGenre = allVideogames.filter(el => el.genres.includes(action.payload));
 
             return{
                 ...state,
-                videogames: filteredVideogames
+                videogames: filteredVideogamesByGenre
             }
     
         default:

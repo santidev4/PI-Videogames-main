@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogames, getGenres } from "../../redux/actions";
+import { getVideogames, getGenres, filterByGenres } from "../../redux/actions";
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
@@ -12,7 +12,6 @@ export default function Home(){
     const allVideogames = useSelector(state => state.videogames);
     const genres = useSelector(state => state.genres);
 
-    // eslint-disable-next-line
     const [currentPage, setCurrentPage] = useState(1);
     // eslint-disable-next-line 
     const [videogamesPerPage, setVidegoamesPerPage] = useState(15);
@@ -40,10 +39,16 @@ export default function Home(){
 
     const data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
 
-    
+    const handleFilterByGenre = (e) => {
+        e.preventDefault()
+        dispatch(filterByGenres(e.target.value))
+    }
+
     return(
         <>
-            <NavBar genres={genres} />
+            <NavBar 
+            genres={genres}
+            handleFilterByGenre={handleFilterByGenre} />
 
             <Pagination 
             videogamesPerPage={videogamesPerPage}
