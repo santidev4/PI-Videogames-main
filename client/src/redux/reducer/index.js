@@ -18,7 +18,7 @@ function rootReducer(state = initialState, action) {
                 genres: action.payload
             };
         case 'FILTER_BY_GENRE':
-            const allVideogames = state.videogames;
+            const allVideogames = state.allVideogames;
             let filteredVideogamesByGenre;
             if(action.payload === 'All') filteredVideogamesByGenre = allVideogames;
             else filteredVideogamesByGenre = allVideogames.filter(el => el.genres.includes(action.payload));
