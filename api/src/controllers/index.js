@@ -143,7 +143,8 @@ const getApiVideogames = async () => {
                         id: el.id,
                         name: el.name,
                         img: el.background_image,
-                        genres: el.genres.map(el => el.name)
+                        genres: el.genres.map(el => el.name),
+                        rating: el.rating
                     })
                 })
             })

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Pagination({videogamesPerPage, allVideogames, paginationFunction}){
+export default function Pagination({videogamesPerPage, allVideogames, paginationFunction, paginationPrev, paginationNext}){
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(allVideogames/videogamesPerPage); i++) {
         pageNumbers.push(i);
@@ -8,6 +8,7 @@ export default function Pagination({videogamesPerPage, allVideogames, pagination
 
     return (
         <div>
+            <button onClick={(e) => paginationPrev(e)}> {'<'} </button>
             {
                 pageNumbers?.map(number => (
                     <button 
@@ -18,6 +19,7 @@ export default function Pagination({videogamesPerPage, allVideogames, pagination
                     </button>
                 ))
             }
+            <button onClick={(e) => paginationNext(e)}> {'>'} </button>
         </div>
     )
 }

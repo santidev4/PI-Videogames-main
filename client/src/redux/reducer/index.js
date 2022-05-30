@@ -26,6 +26,42 @@ function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 videogames: filteredVideogamesByGenre
+            };
+        case 'SORT_BY_NAME':
+            let sortedVideogames;
+            if(action.payload === 'ASC'){
+                sortedVideogames = state.videogames.slice(0).sort((a, b) => {
+                    if(a.name < b.name) return -1;
+                    else if(a.name > b.name) return 1;
+                    else return 0
+                })
+            }
+            else{
+                sortedVideogames = state.videogames.slice(0).sort((a, b) => {
+                    if(a.name > b.name) return -1;
+                    else if(a.name < b.name) return 1;
+                    else return 0
+            })} 
+            return{
+                ...state,
+                videogames: sortedVideogames
+            };
+        case 'SORT_BY_RATING':
+            let sortedByRating;
+            if(action.payload === 'ASC') sortedByRating = state.videogames.slice(0).sort((a, b) => {
+                if(a.rating < b.rating) return -1
+                else if(a.rating > b.rating) return 1
+                else return 0;
+            });
+            else sortedByRating = state.videogames.slice(0).sort((a, b) => {
+                if(a.rating < b.rating) return 1;
+                else if(a.rating > b.rating) return -1;
+                else return 0;
+            });
+
+            return{
+                ...state,
+                videogames: sortedByRating
             }
     
         default:

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogames, getGenres, filterByGenres } from "../../redux/actions";
+import { getVideogames, getGenres, filterByGenres, sortByName, sortByRating } from "../../redux/actions";
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
@@ -21,39 +21,63 @@ export default function Home(){
 
     useEffect(() => {
         dispatch(getVideogames());
-        return()=>{}
-    }, [dispatch, currentPage]);
+        
+    }, [dispatch]);
     
     useEffect(()=>{
         dispatch(getGenres());
     }, [dispatch]);
     
+
     const paginationFunction = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
+
+    const paginationPrev = () => {
+
+        if(currentPage > 1) setCurrentPage( currentPage - 1)
+    }
+
+    const paginationNext = () => {
+        const lastPage = Math.ceil(allVideogames.length/videogamesPerPage)
+        if(currentPage < lastPage)  setCurrentPage(currentPage + 1)
+    }
     
-    // useEffect(()=>{
-
-    //     return()=>{}
-    // }, [currentPage])
-
+    
     const data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
-
+    
     const handleFilterByGenre = (e) => {
         e.preventDefault()
         dispatch(filterByGenres(e.target.value))
+        setCurrentPage(1)
+
+    }
+    
+    const handleSortByName = (e) => {
+        e.preventDefault();
+        dispatch(sortByName(e.target.value))
+        // dispatch(getVideogames())
     }
 
+    const handleSortByRating = (e) => {
+        e.preventDefault();
+        dispatch(sortByRating(e.target.value))
+    }
+    
     return(
         <>
             <NavBar 
             genres={genres}
-            handleFilterByGenre={handleFilterByGenre} />
+            handleFilterByGenre={handleFilterByGenre}
+            handleSortByName={handleSortByName} 
+            handleSortByRating={handleSortByRating} />
 
             <Pagination 
             videogamesPerPage={videogamesPerPage}
             allVideogames={allVideogames.length}
-            paginationFunction={paginationFunction} />
+            paginationFunction={paginationFunction}
+            paginationPrev={paginationPrev}
+            paginationNext={paginationNext} />
 
             <Cards data={data} />
 

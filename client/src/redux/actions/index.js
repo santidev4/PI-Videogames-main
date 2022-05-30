@@ -25,4 +25,18 @@ export function filterByGenres(payload){
         type: 'FILTER_BY_GENRE',
         payload
     }
+};
+
+export function sortByName(payload){
+    return{
+        type: 'SORT_BY_NAME',
+        payload
+    };
+};
+
+export function sortByRating(payload){
+    return{
+        type: 'SORT_BY_RATING',
+        payload
+    };
 }
