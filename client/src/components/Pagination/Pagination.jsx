@@ -8,7 +8,7 @@ export default function Pagination({videogamesPerPage, allVideogames, pagination
 
     return (
         <div>
-            <button onClick={(e) => paginationPrev(e)}> {'<'} </button>
+            <button onClick={(e) => paginationPrev(e)}> {'<'} Prev </button>
             {
                 pageNumbers?.map(number => (
                     <button 
@@ -19,7 +19,7 @@ export default function Pagination({videogamesPerPage, allVideogames, pagination
                     </button>
                 ))
             }
-            <button onClick={(e) => paginationNext(e)}> {'>'} </button>
+            <button onClick={(e) => paginationNext(e)}>Next {'>'} </button>
         </div>
     )
 }

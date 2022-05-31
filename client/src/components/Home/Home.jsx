@@ -4,6 +4,7 @@ import { getVideogames, getGenres, filterByGenres, sortByName, sortByRating } fr
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
+import { Loader } from "../Loader/Loader";
 
 
 export default function Home(){
@@ -72,6 +73,13 @@ export default function Home(){
             handleSortByName={handleSortByName} 
             handleSortByRating={handleSortByRating} />
 
+            
+            
+            {
+                allVideogames.length ? 
+            
+            <>
+
             <Pagination 
             videogamesPerPage={videogamesPerPage}
             allVideogames={allVideogames.length}
@@ -85,6 +93,14 @@ export default function Home(){
             videogamesPerPage={videogamesPerPage}
             allVideogames={allVideogames.length}
             paginationFunction={paginationFunction} />
+
+            </>
+
+            : <Loader/>
+
+            }
+
+
         </>
     )
 }
