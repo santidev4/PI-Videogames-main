@@ -22,7 +22,6 @@ export default function Home(){
 
     useEffect(() => {
         dispatch(getVideogames());
-        
     }, [dispatch]);
     
     useEffect(()=>{
