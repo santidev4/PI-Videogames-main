@@ -1,4 +1,5 @@
 import React from "react";
+import style from "../Pagination/Pagination.module.css"
 
 export default function Pagination({videogamesPerPage, allVideogames, paginationFunction, paginationPrev, paginationNext}){
     const pageNumbers = [];
@@ -7,19 +8,19 @@ export default function Pagination({videogamesPerPage, allVideogames, pagination
     }
 
     return (
-        <div>
-            <button onClick={(e) => paginationPrev(e)}> {'<'} Prev </button>
+        <div className={style.pagination}>
+            <button className={style.arrow} onClick={(e) => paginationPrev(e)}> {'<'} Prev </button>
             {
                 pageNumbers?.map(number => (
                     <button 
                     onClick={() => paginationFunction(number)}
                     key={number}
-                    className="">
+                    className={style.numbers}>
                         {number}
                     </button>
                 ))
             }
-            <button onClick={(e) => paginationNext(e)}>Next {'>'} </button>
+            <button className={style.arrow} onClick={(e) => paginationNext(e)}>Next {'>'} </button>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
 import { Loader } from "../Loader/Loader";
+import FilterAndSorts from "../FilterAndSorts/FilterAndSorts";
 
 
 export default function Home(){
@@ -67,12 +68,13 @@ export default function Home(){
     return(
         <>
             <NavBar 
+             />
+
+            <FilterAndSorts 
             genres={genres}
             handleFilterByGenre={handleFilterByGenre}
             handleSortByName={handleSortByName} 
             handleSortByRating={handleSortByRating} />
-
-            
             
             {
                 allVideogames.length ? 
