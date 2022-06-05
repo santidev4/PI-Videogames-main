@@ -63,7 +63,24 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 videogames: sortedByRating
             }
-    
+        case 'FILTER_CREATED':
+            const allVideogames1 = state.allVideogames;
+            let filteredByCreated;
+            if(action.payload === 'All')    filteredByCreated = allVideogames1;
+            else if(action.payload === 'Created')   filteredByCreated = allVideogames1.filter(el => el.fromDb);
+            else if(action.payload === 'Api')   filteredByCreated = allVideogames1.filter(el => !el.fromDb);
+            
+
+            return{
+                ...state,
+                videogames: filteredByCreated
+            }
+        case 'FILTER_BY_NAME':
+            
+            return{
+                ...state,
+                videogames: action.payload
+            }
         default:
             return state;
     }

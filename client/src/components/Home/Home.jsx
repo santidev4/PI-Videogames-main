@@ -23,11 +23,11 @@ export default function Home(){
 
     useEffect(() => {
         dispatch(getVideogames());
-    }, [dispatch]);
-    
-    useEffect(()=>{
         dispatch(getGenres());
     }, [dispatch]);
+    
+    // useEffect(()=>{
+    // }, [dispatch]);
     
 
     const paginationFunction = (pageNumber) => {
@@ -51,7 +51,6 @@ export default function Home(){
         e.preventDefault()
         dispatch(filterByGenres(e.target.value))
         setCurrentPage(1)
-
     }
     
     const handleSortByName = (e) => {
@@ -64,11 +63,12 @@ export default function Home(){
         e.preventDefault();
         dispatch(sortByRating(e.target.value))
     }
+
+    
     
     return(
         <>
-            <NavBar 
-             />
+            <NavBar />
 
             <FilterAndSorts 
             genres={genres}
@@ -86,7 +86,8 @@ export default function Home(){
             allVideogames={allVideogames.length}
             paginationFunction={paginationFunction}
             paginationPrev={paginationPrev}
-            paginationNext={paginationNext} />
+            paginationNext={paginationNext}
+            currentPage={currentPage} />
 
             <Cards data={data} />
 

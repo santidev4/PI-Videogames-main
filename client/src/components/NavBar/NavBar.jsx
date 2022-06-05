@@ -5,12 +5,13 @@ import style from "../NavBar/NavBar.module.css"
 // Filtros: por genero - creados o existentes
 // Ordenamientos: A-Z asc-desc  -   rating asc-desc
 
-export default function NavBar(){
+export default function NavBar({handleSearchByName}){
     
     return(
         <div className={style.container}>
             
-            <SearchBar />
+            <SearchBar
+            handleSearchByName={handleSearchByName} />
         </div>
     )
 }

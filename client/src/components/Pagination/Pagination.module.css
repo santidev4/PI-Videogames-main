@@ -1,5 +1,5 @@
 .pagination, .numbers{
-    margin-top: 35px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,8 +8,8 @@
 .numbers{
     background: #ffc107;
     color: #fdfdfd;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     font-size: 18px;
     padding-top: 1px;
     border: 1px solid rgba(0, 0, 0, 0.25);
@@ -22,24 +22,29 @@
     border-bottom-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
-.numbers:focus,
-.numbers:active{
+.numbers_active{
     padding-top: 4px;
     border-left-width: 1px;
-    background: rgba(255, 87, 34, 1);
+    background: rgba(255, 87, 34, 0.9);
     box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.25);
+    color: #fdfdfd;
+    height: 40px;
+    width: 40px;
+    font-size: 18px;
+    padding-top: 1px;
+    margin-top: auto;
 }
 .arrow{
-    margin-top: 35px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     background: #ffc107;
     color: #fdfdfd;
-    height: 50px;
-    width: 50px;
-    font-size: 18px;
+    height: 40px;
+    width: 60px;
+    font-size: 14px;
     padding-top: 1px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     border-right-width: 0px;

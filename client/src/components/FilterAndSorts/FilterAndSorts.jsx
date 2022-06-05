@@ -25,6 +25,7 @@ export default function FilterAndSorts({genres, handleFilterByGenre, handleSortB
                 </select>
 
                 <select onClick={(e) => handleSortByRating(e)}>
+                    <option  value="All"  >All</option>
                     <option  value="Created"  >Creados</option>
                     <option  value="API" >API</option>
                 </select>

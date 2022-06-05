@@ -1,11 +1,13 @@
 import React from "react";
 import style from "../Pagination/Pagination.module.css"
 
-export default function Pagination({videogamesPerPage, allVideogames, paginationFunction, paginationPrev, paginationNext}){
+export default function Pagination({videogamesPerPage, allVideogames, paginationFunction, paginationPrev, paginationNext, currentPage}){
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(allVideogames/videogamesPerPage); i++) {
         pageNumbers.push(i);
     }
+
+
 
     return (
         <div className={style.pagination}>
@@ -15,7 +17,7 @@ export default function Pagination({videogamesPerPage, allVideogames, pagination
                     <button 
                     onClick={() => paginationFunction(number)}
                     key={number}
-                    className={style.numbers}>
+                    className={currentPage === number ? style.numbers_active : style.numbers}>
                         {number}
                     </button>
                 ))

@@ -47,4 +47,25 @@ export function sortByRating(payload){
         type: 'SORT_BY_RATING',
         payload
     };
+};
+
+export function filterCreated(payload){
+    return{
+        type: 'FILTER_CREATED',
+        payload
+    }
+};
+
+export function filterByName(payload){
+    return async function(dispatch){
+        try {
+            let videogame = await axios(`http://localhost:3001/videogames?name=${payload}`)
+            return{
+                type: 'FILTER_BY_NAME',
+                payload: videogame.data
+            }
+        } catch (error) {
+            console.log('error', error)
+        }
+    }
 }

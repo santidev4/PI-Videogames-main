@@ -1,3 +1,10 @@
+.filtros{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 25px;
+}
 .container{
     display: flex;
     position: relative;
@@ -23,12 +30,6 @@
 .btn:hover{
     background: #ff5722;
     color: #fff
-}
-.filtros{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
 }
 .btn_selected{
     position: relative;
