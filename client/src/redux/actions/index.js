@@ -59,10 +59,11 @@ export function filterCreated(payload){
 export function filterByName(payload){
     return async function(dispatch){
         try {
-            let videogame = await axios(`http://localhost:3001/videogames?name=${payload}`)
+            let response = await axios(`http://localhost:3001/videogames?name=${payload}`);
+            let videogame = response.data
             return{
                 type: 'FILTER_BY_NAME',
-                payload: videogame.data
+                payload: videogame
             }
         } catch (error) {
             console.log('error', error)

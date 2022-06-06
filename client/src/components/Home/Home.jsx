@@ -20,11 +20,12 @@ export default function Home(){
 
     const indexOfLastVideogame = currentPage * videogamesPerPage;
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
+    const data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
 
     useEffect(() => {
         dispatch(getVideogames());
         dispatch(getGenres());
-    }, [dispatch]);
+    }, [dispatch, data]);
     
     // useEffect(()=>{
     // }, [dispatch]);
@@ -45,7 +46,6 @@ export default function Home(){
     }
     
     
-    const data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
     
     const handleFilterByGenre = (e) => {
         e.preventDefault()
@@ -77,7 +77,7 @@ export default function Home(){
             handleSortByRating={handleSortByRating} />
             
             {
-                allVideogames.length ? 
+                data.length ? 
             
             <>
 

@@ -10,7 +10,7 @@ export default function SearchBar(){
 
     const handleInputChange = (e) => {
         e.preventDefault();
-        setName(e.target.value.toLowerCase())
+        setName(e.target.value)
     }
     
     const handleSubmit = (e) => {
@@ -21,10 +21,10 @@ export default function SearchBar(){
 
     return(
         <div className={style.box}>
-            <form>
+            <div className={style.form} >
                 <input type="text" placeholder="Search..." onChange={(e) => handleInputChange(e)}/>
-                <input type="submit" value="Search" onSubmit={(e) => handleSubmit(e)}/>
-            </form>
+                <input type="submit" onClick={(e) => handleSubmit(e)}/>
+            </div>
         </div>
     )
 }

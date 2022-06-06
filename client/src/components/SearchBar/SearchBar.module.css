@@ -33,3 +33,14 @@ input[type=submit]{
 input[type=submit]:hover{
     background: #ff5722;
 }
+button{
+    position: relative;
+    border-radius: 0 25px 25px 0;
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #ffc107;
+    color: #fff;
+}
