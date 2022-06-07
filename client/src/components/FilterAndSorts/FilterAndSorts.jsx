@@ -6,11 +6,13 @@ export default function FilterAndSorts({genres, handleFilterByGenre, handleSortB
     return(
         <div className={style.filtros}>
                  <select onChange={(e) => handleSortByName(e)}>
+                    <option selected disabled>Alfabeticamente</option>
                     <option  value='ASC' >A - Z ↑</option>
                     <option  value='DESC' >Z - A ↓</option>
                 </select> 
 
                 <select onChange={(e) => handleFilterByGenre(e)}>
+                    <option selected disabled>Generos</option>
                     <option value="All">All</option>
                     {
                         genres?.map(el => (
@@ -20,11 +22,13 @@ export default function FilterAndSorts({genres, handleFilterByGenre, handleSortB
                 </select>
 
                 <select onClick={(e) => handleSortByRating(e)}>
+                <option selected disabled>Rating</option>
                     <option  value="ASC"  >Rating ↑</option>
                     <option  value="DESC" >Rating ↓</option>
                 </select>
 
                 <select onClick={(e) => handleSortByRating(e)}>
+                    <option selected disabled>Creados</option>
                     <option  value="All"  >All</option>
                     <option  value="Created"  >Creados</option>
                     <option  value="API" >API</option>

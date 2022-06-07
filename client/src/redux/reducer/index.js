@@ -1,7 +1,8 @@
 const initialState = {
     videogames: [],
     allVideogames: [],
-    genres: []
+    genres: [],
+    detail: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -62,7 +63,7 @@ function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 videogames: sortedByRating
-            }
+            };
         case 'FILTER_CREATED':
             const allVideogames1 = state.allVideogames;
             let filteredByCreated;
@@ -76,10 +77,14 @@ function rootReducer(state = initialState, action) {
                 videogames: filteredByCreated
             }
         case 'FILTER_BY_NAME':
-            
             return{
                 ...state,
                 videogames: action.payload
+            }
+        case 'GET_DETAIL':
+            return{
+                ...state,
+                detail: [action.payload]
             }
         default:
             return state;

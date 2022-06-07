@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogames, getGenres, filterByGenres, sortByName, sortByRating } from "../../redux/actions";
+import { getVideogames, getGenres, filterByGenres, sortByName, sortByRating, filterByName } from "../../redux/actions";
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
@@ -25,10 +25,7 @@ export default function Home(){
     useEffect(() => {
         dispatch(getVideogames());
         dispatch(getGenres());
-    }, [dispatch, data]);
-    
-    // useEffect(()=>{
-    // }, [dispatch]);
+    }, [dispatch]);
     
 
     const paginationFunction = (pageNumber) => {
@@ -64,11 +61,24 @@ export default function Home(){
         dispatch(sortByRating(e.target.value))
     }
 
+    const [name, setName] = React.useState('');
+
+    const handleInputChange = (e) => {
+        // e.preventDefault();
+        setName(e.target.value)
+    }
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(filterByName(name));
+        setName('');        
+    }
     
     return(
         <>
-            <NavBar />
+            <NavBar 
+            handleInputChange={handleInputChange}
+            handleSubmit={handleSubmit}/>
 
             <FilterAndSorts 
             genres={genres}

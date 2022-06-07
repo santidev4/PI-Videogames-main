@@ -132,7 +132,7 @@ const getApiVideogames = async () => {
                     .catch(err => console.log(err))
                 response.push(request);
             }
-
+    
             //Imagen
             // Nombre
             // Géneros
@@ -179,14 +179,14 @@ const getVideoGameDetailById = async (id) => {
     try {
         let request = await axios(`${url}/${id}?key=${API_KEY}`)
             
-        console.log(request.data)
-        const { img,name, genres, description, released, rating, platforms } = request.data;
+        console.log(request)
+        const { background_image ,name, genres, description, released, rating, platforms } = request.data;
 
         return {
-            img,
             name,
-            genres: genres.map( el => el.name),
             description,
+            img: background_image,
+            genres: genres.map( el => el.name),
             released,
             rating,
             platforms: platforms.map(el => el.platform.name)

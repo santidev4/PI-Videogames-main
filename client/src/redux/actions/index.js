@@ -60,11 +60,26 @@ export function filterByName(payload){
     return async function(dispatch){
         try {
             let response = await axios(`http://localhost:3001/videogames?name=${payload}`);
-            let videogame = response.data
-            return{
+            
+            return dispatch({
                 type: 'FILTER_BY_NAME',
-                payload: videogame
-            }
+                payload: response.data
+            })
+        } catch (error) {
+            console.log('error', error)
+        }
+    }
+};
+
+export function getDetail(payload){
+    return async function(dispatch){
+        try {
+            let response = await axios(`http://localhost:3001/videogames/${payload}`);
+
+            return dispatch({
+                type: 'GET_DETAIL',
+                payload: response.data
+            })
         } catch (error) {
             console.log('error', error)
         }

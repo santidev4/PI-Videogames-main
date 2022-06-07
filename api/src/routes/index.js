@@ -21,13 +21,14 @@ const router = Router();
 
 router.get('/videogames', async (req, res) => {
     let apiVideogames = await getApiVideogames();
-
+    
     const name = req.query.name;
     if(name){
         const filteredVideogames = await getVideogamesByName(apiVideogames, name);
         filteredVideogames.length ? res.send(filteredVideogames) : res.send('No se encontro ningun videojuego con ese nombre')
     }
     else res.send(apiVideogames);
+    
 })
 
 
@@ -37,7 +38,8 @@ router.get('/videogames', async (req, res) => {
 // Incluir los géneros asociados
 
 router.get('/videogames/:id', async (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
+    console.log('id', id)
     let response = await getVideoGameDetailById(id);
 
     res.send(response)
