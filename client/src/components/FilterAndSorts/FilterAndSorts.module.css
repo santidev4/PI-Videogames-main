@@ -50,7 +50,7 @@
 }
 /* Select */
 
-select{
+.select_filterAndSort{
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     font-size: 1.2rem;
     /* padding: 0.3rem 0rem; */
@@ -63,14 +63,14 @@ select{
     border: 0;
     transition: 0.5s;
 }
-select:hover{
+.select_filterAndSort:hover{
     background: #ff5722;
 }
 
-select option:checked { 
+.select_filterAndSort option:checked { 
     background: #ff5722;
 }
-select.decorated option:hover{
+.select_filterAndSort.decorated option:hover{
     background: #ffc107;
 }
 

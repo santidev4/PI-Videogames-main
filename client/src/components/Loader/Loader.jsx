@@ -1,6 +1,6 @@
 import style from "../Loader/Loader.module.css"
 
-export function Loader(){
+export default function Loader(){
 
     return(
         <div className={style.container}>

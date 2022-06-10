@@ -72,16 +72,23 @@ export function filterByName(payload){
 };
 
 export function getDetail(payload){
+    
     return async function(dispatch){
-        try {
-            let response = await axios(`http://localhost:3001/videogames/${payload}`);
-
-            return dispatch({
-                type: 'GET_DETAIL',
-                payload: response.data
-            })
-        } catch (error) {
-            console.log('error', error)
+            try {
+                let response = await axios(`http://localhost:3001/videogames/${payload}`);
+                
+                return dispatch({
+                    type: 'GET_DETAIL',
+                    payload: response.data
+                })
+            } catch (error) {
+                console.log('error', error)
+            }
         }
-    }
+}
+
+export function resetDetail(payload){
+    return{
+        type: 'RESET_DETAIL'
+        }
 }

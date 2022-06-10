@@ -123,7 +123,7 @@ const getApiVideogames = async () => {
         try {
             const pages = 5;
             const response = [];
-            const url = 'https://api.rawg.io/api/games?key=79d4844fcfec46a0b1a2be9f7b9a19dd&page=';
+            const url = `https://api.rawg.io/api/games?key=${API_KEY}&page=`;
 
             for (let i = 1; i <= pages; i++) {
                 let request = await axios(`${url+i}`)
@@ -144,7 +144,8 @@ const getApiVideogames = async () => {
                         name: el.name,
                         img: el.background_image,
                         genres: el.genres.map(el => el.name),
-                        rating: el.rating
+                        rating: el.rating,
+                        platforms: el.platforms.map(el => el.platform.name)
                     })
                 })
             })

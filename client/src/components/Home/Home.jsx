@@ -4,7 +4,7 @@ import { getVideogames, getGenres, filterByGenres, sortByName, sortByRating, fil
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
-import { Loader } from "../Loader/Loader";
+import Loader  from "../Loader/Loader";
 import FilterAndSorts from "../FilterAndSorts/FilterAndSorts";
 
 
@@ -33,7 +33,6 @@ export default function Home(){
     }
 
     const paginationPrev = () => {
-
         if(currentPage > 1) setCurrentPage( currentPage - 1)
     }
 
@@ -41,8 +40,7 @@ export default function Home(){
         const lastPage = Math.ceil(allVideogames.length/videogamesPerPage)
         if(currentPage < lastPage)  setCurrentPage(currentPage + 1)
     }
-    
-    
+
     
     const handleFilterByGenre = (e) => {
         e.preventDefault()

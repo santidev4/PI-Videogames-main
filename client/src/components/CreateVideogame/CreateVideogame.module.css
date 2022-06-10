@@ -1,0 +1,20 @@
+.form_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.form_card{
+    width: 50vw;
+    height: 80%;
+    /* margin: 20px; */
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.5s ease;
+}
+.firstColumn{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}

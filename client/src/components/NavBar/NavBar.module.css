@@ -7,73 +7,16 @@
     justify-content: space-between;
 }
 
-.btn{
-    position: relative;
-    border-radius: 10px;
-    margin: 0 10px 0 10px;
-    width: 75px;
-    height: 45px;
-    border: 2px solid #ff5722;
+button{
+    position: relateive;
+    border-radius: 25px 25px 25px 25px;
+    width: 150px;
+    height: 50px;
+    border: none;
     outline: none;
     cursor: pointer;
-    background: #fff;
-    color: #ff5722;
-    transition: 0.5s;
-}
-.btn:hover{
-    background: #ff5722;
-    color: #fff
-}
-.filtros{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.btn_selected{
-    position: relative;
-    border-radius: 10px;
-    margin: 0 10px 0 10px;
-    width: 75px;
-    height: 45px;
-    border: 2px solid #ff5722;
-    outline: none;
-    cursor: pointer;
-    background: #ff5722;
-    color: #fff
-}
-.btn_selected:hover{
-    background: #fff;
-    color: #ff5722;
-    transition: 0.5s;
-}
-/* Select */
-
-select{
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    font-size: 1.2rem;
-    /* padding: 0.3rem 0rem; */
-    width: 175px;
-    height: 45px;
     background: #ffc107;
     color: #fff;
-    border-radius: 5px;
-    /* appearance: none; */
-    border: 0;
-    transition: 0.5s;
-}
-select:hover{
-    background: #ff5722;
-}
-
-select option:checked { 
-    background: #ff5722;
-}
-select.decorated option:hover{
-    background: #ffc107;
-}
-
-.custom_select{
-    position: relative;
+    margin-right: 20px;
 }
 

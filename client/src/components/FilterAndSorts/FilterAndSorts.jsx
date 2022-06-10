@@ -5,13 +5,13 @@ export default function FilterAndSorts({genres, handleFilterByGenre, handleSortB
 
     return(
         <div className={style.filtros}>
-                 <select onChange={(e) => handleSortByName(e)}>
+                 <select onChange={(e) => handleSortByName(e)} className={style.select_filterAndSort}>
                     <option selected disabled>Alfabeticamente</option>
                     <option  value='ASC' >A - Z ↑</option>
                     <option  value='DESC' >Z - A ↓</option>
                 </select> 
 
-                <select onChange={(e) => handleFilterByGenre(e)}>
+                <select onChange={(e) => handleFilterByGenre(e)} className={style.select_filterAndSort}>
                     <option selected disabled>Generos</option>
                     <option value="All">All</option>
                     {
@@ -21,13 +21,13 @@ export default function FilterAndSorts({genres, handleFilterByGenre, handleSortB
                     }
                 </select>
 
-                <select onClick={(e) => handleSortByRating(e)}>
+                <select onClick={(e) => handleSortByRating(e)} className={style.select_filterAndSort}>
                 <option selected disabled>Rating</option>
                     <option  value="ASC"  >Rating ↑</option>
                     <option  value="DESC" >Rating ↓</option>
                 </select>
 
-                <select onClick={(e) => handleSortByRating(e)}>
+                <select onClick={(e) => handleSortByRating(e)} className={style.select_filterAndSort}>
                     <option selected disabled>Creados</option>
                     <option  value="All"  >All</option>
                     <option  value="Created"  >Creados</option>
