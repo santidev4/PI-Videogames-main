@@ -28,7 +28,6 @@ router.get('/videogames', async (req, res) => {
         filteredVideogames.length ? res.send(filteredVideogames) : res.send('No se encontro ningun videojuego con ese nombre')
     }
     else res.send(apiVideogames);
-    
 })
 
 
