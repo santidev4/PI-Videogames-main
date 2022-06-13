@@ -25,61 +25,83 @@ export default function CreateVideogame(){
     // })
 
     useEffect(() => {
-        dispatch(getGenres())
-        dispatch(getVideogames())
+        dispatch(getGenres());
+        dispatch(getVideogames());
     }, [])
 
-    // console.log('genres', genres)
-    // console.log('videogames', videogames)
 
     return(
         <>
             <div className={style.form_container}>
                 <div className={style.form_card}>
                     <form action="">
-                        <div className={style.firstColumn}>
-                            <div>
+                        <div className={style.first_column}>
+                            <div className={style.single_input}>
                                 <label htmlFor="">Name</label>
-                                <input type="text" name='name' />
+                                <input type="text" name='name' className={style.name_input} />
                             </div>
-                            <div>
+                            <div className={style.single_input}>
                                 <label htmlFor="">Release Date</label>
-                                <input type="date" name='name' />
+                                <input type="date" name='name' className={style.date_input} />
                             </div>
                         </div>
-                        <div>
-                            <label htmlFor="">Name</label>
-                            <select name="" id="">
-                                {
-                                    genres?.map(el =>(
-                                        <option value={el.name}> {el.name} </option>
 
+                        <div className={style.second_column}>  
+                            <div className={style.single_input}> 
+                                <label htmlFor="">Genres</label>
+                                <select name="" id="" className={style.genres_select} >
+                                    {
+                                        genres?.map(el =>(
+                                            <option value={el.name}> {el.name} </option>
+
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className={style.single_input}>
+                                <label htmlFor="">Platforms:</label>
+                                <select name="" id="" className={style.platforms_input} >
+                                {
+                                    platforms?.map(el =>(
+                                        <>
+                                            {/* <label htmlFor="">{el }</label>
+                                            <input type="checkbox" name='name' /> */}
+                                            <option value={el}> {el} </option>
+                                        </>
                                     ))
                                 }
-                            </select>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="">Platforms:</label>
-                            {
-                                platforms?.map(el =>(
-                                    <>
-                                        <label htmlFor="">{el }</label>
-                                        <input type="checkbox" name='name' />
-                                    </>
-                                ))
-                            }
-                        </div>
-                        <div>
+
+                        <div className={style.third_column} >
                             <label htmlFor="">Description</label>
-                            <input type="text" name='name' />
+                            <input type="text" name='name' className={style.description_input} />
+                        </div>
+                        <div className={style.img_url}>
+                            <label htmlFor="img">img url</label>
+                            <input type="text" />
                         </div>
                         <div>
-                            <label htmlFor="">Rating</label>
-                            <input type="text" name='name' />
+                            <div className={style.rating} >
+                                <input type="radio" name="rating" value="5" className={style.five} /><label for="5">☆</label>
+                                <input type="radio" name="rating" value="4" className={style.four}/><label for="4">☆</label>
+                                <input type="radio" name="rating" value="3" className={style.three}/><label for="3">☆</label>
+                                <input type="radio" name="rating" value="2" className={style.two}/><label for="2">☆</label>
+                                <input type="radio" name="rating" value="1" className={style.one}/><label for="1">☆</label>
+                                <p htmlFor="" className={style.rating_title} >Rating</p>
+                            </div>
+                        </div>
+                        
+
+                        <div className={style.btn_create}>
+                            <button >Crear</button>
                         </div>
                     </form>
                 </div>
             </div>
+
+
         </>
     )
 }

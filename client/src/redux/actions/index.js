@@ -87,8 +87,9 @@ export function getDetail(payload){
         }
 }
 
-export function resetDetail(payload){
+export function resetDetail(){
     return{
         type: 'RESET_DETAIL'
         }
-}
+};
+

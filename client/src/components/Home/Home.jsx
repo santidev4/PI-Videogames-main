@@ -28,6 +28,7 @@ export default function Home(){
     }, [dispatch]);
     
 
+
     const paginationFunction = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
