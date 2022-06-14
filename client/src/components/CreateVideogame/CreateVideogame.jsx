@@ -76,11 +76,11 @@ export default function CreateVideogame(){
 
                         <div className={style.third_column} >
                             <label htmlFor="">Description</label>
-                            <input type="text" name='name' className={style.description_input} />
+                            <textarea type="text" name='name' className={style.description_input} />
                         </div>
-                        <div className={style.img_url}>
+                        <div className={style.fourth_column} >
                             <label htmlFor="img">img url</label>
-                            <input type="text" />
+                            <input type="text" className={style.img_url}/>
                         </div>
                         <div>
                             <div className={style.rating} >

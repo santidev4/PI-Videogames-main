@@ -51,7 +51,12 @@
     width: 500px;
     height: 250px;
 }
-
+.fourth_column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
 /* codepen */
 
 
