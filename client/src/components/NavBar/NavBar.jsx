@@ -13,7 +13,7 @@ export default function NavBar({handleInputChange, handleSubmit}){
             handleSubmit={handleSubmit} />
 
             <Link to="/create">
-                <button>Create</button>
+                <button className={style.btn_create}>Create</button>
             </Link>
         </div>
     )

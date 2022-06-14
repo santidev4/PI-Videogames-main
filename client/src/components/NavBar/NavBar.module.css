@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 
-button{
+.btn_create{
     position: relateive;
     border-radius: 25px 25px 25px 25px;
     width: 150px;
