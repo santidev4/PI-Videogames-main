@@ -74,7 +74,10 @@ export default function Home(){
         setName('');        
     }
 
-    
+    const handleFilterCreated = (e) => {
+        e.preventDefault();
+        dispatch(filterCreated(e.target.value))
+    }
     
     return(
         <>
@@ -86,7 +89,8 @@ export default function Home(){
             genres={genres}
             handleFilterByGenre={handleFilterByGenre}
             handleSortByName={handleSortByName} 
-            handleSortByRating={handleSortByRating} />
+            handleSortByRating={handleSortByRating}
+            handleFilterCreated={handleFilterCreated} />
             
             {
                 data.length ? 

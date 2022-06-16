@@ -1,6 +1,6 @@
 import style from "../FilterAndSorts/FilterAndSorts.module.css"
 
-export default function FilterAndSorts({genres, handleFilterByGenre, handleSortByName, handleSortByRating}){
+export default function FilterAndSorts({genres, handleFilterByGenre, handleSortByName, handleSortByRating, handleFilterCreated}){
 
 
     return(
@@ -27,7 +27,7 @@ export default function FilterAndSorts({genres, handleFilterByGenre, handleSortB
                     <option  value="DESC" >Rating ↓</option>
                 </select>
 
-                <select onClick={(e) => handleSortByRating(e)} className={style.select_filterAndSort}>
+                <select onClick={(e) => handleFilterCreated(e)} className={style.select_filterAndSort}>
                     <option selected disabled>Creados</option>
                     <option  value="All"  >All</option>
                     <option  value="Created"  >Creados</option>

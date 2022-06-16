@@ -17,7 +17,7 @@ export default function CreateVideogame(){
 
     let [input, setInput] = useState({
         name: '',
-        releaseDate: '',
+        released: '',
         img: '',
         genres: [],
         platforms: [],
@@ -104,7 +104,7 @@ export default function CreateVideogame(){
         alert('Videogame Creado');
         setInput({
             name: '',
-            releaseDate: '',
+            released: '',
             img: '',
             genres: [],
             platforms: [],
@@ -123,18 +123,34 @@ export default function CreateVideogame(){
                         <div className={style.first_column}>
                             <div className={style.single_input}>
                                 <label htmlFor="">Name</label>
-                                <input type="text" value={input.name} name='name' className={style.name_input} onChange={(e)=> handleChange(e)} />
+                                <input 
+                                type="text" 
+                                value={input.name} 
+                                name='name' 
+                                className={style.name_input} 
+                                onChange={(e)=> handleChange(e)} />
                             </div>
                             <div className={style.single_input}>
                                 <label htmlFor="">Release Date</label>
-                                <input type="date" value={input.releaseDate} name='releaseDate' className={style.date_input} onChange={(e)=> handleChange(e)}/>
+                                <input 
+                                type="date" 
+                                min="1960-01-01" max="2022-12-31"
+                                value={input.released} 
+                                name='released' 
+                                className={style.date_input} 
+                                onChange={(e)=> handleChange(e)}/>
                             </div>
                         </div>
 
                         <div className={style.second_column}>  
                             <div className={style.single_input}> 
                                 <label htmlFor="">Genres</label>
-                                <select name="genres" id="" className={style.genres_select} onChange={(e) => handleGenres(e)}>
+                                <select 
+                                name="genres" 
+                                id="" 
+                                className={style.genres_select} 
+                                onChange={(e) => handleGenres(e)}>
+                                <option selected disabled>Genres</option>
                                     {
                                         genres?.map(el =>(
                                             <option value={el.name} name='genres' key={el.id}> {el.name} </option>
@@ -161,7 +177,12 @@ export default function CreateVideogame(){
                             </div>
                             <div className={style.single_input}>
                                 <label htmlFor="">Platforms:</label>
-                                <select name="platforms" id="" className={style.platforms_input} onChange={(e) => handlePlatforms(e)} >
+                                <select 
+                                name="platforms" 
+                                id="" 
+                                className={style.platforms_input} 
+                                onChange={(e) => handlePlatforms(e)} >
+                                <option selected disabled>Platforms</option>
                                 {
                                     platforms?.map(el =>(
                                         <>
@@ -195,11 +216,19 @@ export default function CreateVideogame(){
 
                         <div className={style.third_column} >
                             <label htmlFor="">Description</label>
-                            <textarea type="text" name='description' className={style.description_input} onChange={(e)=> handleChange(e)}/>
+                            <textarea 
+                            type="text" 
+                            name='description' 
+                            className={style.description_input} 
+                            onChange={(e)=> handleChange(e)}/>
                         </div>
                         <div className={style.fourth_column} >
                             <label htmlFor="img">img url</label>
-                            <input type="text"  name="img" className={style.img_url} onChange={(e)=> handleChange(e)}/>
+                            <input 
+                            type="text" 
+                            name="img" 
+                            className={style.img_url} 
+                        onChange={(e)=> handleChange(e)}/>
                         </div>
                         <div>
                             <div className={style.rating}  >

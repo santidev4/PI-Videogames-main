@@ -178,20 +178,37 @@ const getVideogamesByName = (arr, name) => {
 
 const getVideoGameDetailById = async (id) => {
     try {
-        let request = await axios(`${url}/${id}?key=${API_KEY}`)
-            
-        console.log(request)
-        const { background_image ,name, genres, description, released, rating, platforms } = request.data;
 
-        return {
-            name,
-            description,
-            img: background_image,
-            genres: genres.map( el => el.name),
-            released,
-            rating,
-            platforms: platforms.map(el => el.platform.name)
+        if (typeof id === 'string' && id.includes('-')) {
+            return await Videogame.findByPk(id, {
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt'],
+                },
+                include: {
+                    model: Genre,
+                    as: 'genres',
+                    attributes: ['id', 'name'],
+                    throuh: { attributes:[]}
+                }
+            })
+        } else {
+            let request = await axios(`${url}/${id}?key=${API_KEY}`)
+                
+            console.log(request)
+            const { background_image ,name, genres, description_raw, released, rating, platforms } = request.data;
+    
+            return {
+                name,
+                description: description_raw,
+                img: background_image,
+                genres: genres.map( el => el.name),
+                released,
+                rating,
+                platforms: platforms.map(el => el.platform.name)
+            }
+            
         }
+
     } catch (error) {
         console.log(error);
     }
@@ -220,18 +237,34 @@ const getGenres = async () => {
     else return dbGenres;
 };
 
-const postGame = async (name, description, platforms, genres, rating, img, releaseDate) => {
-    let videogameCreated = await Videogame.create({
-        name,
-        description,
-        platforms, 
-        genres, 
-        rating, 
-        img, 
-        releaseDate
-    })
+const postGame = async (name, description, platforms, genres, rating, img, released) => {
 
-    return videogameCreated;
+    try {
+        let videogameCreated = await Videogame.create({
+            name,
+            description,
+            platforms, 
+            // genres, 
+            rating, 
+            img, 
+            released
+        });
+    
+        let genresInDb = await Genre.findAll({
+            where: {name: genres},
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            }
+          })
+
+        await videogameCreated.addGenres(genresInDb);
+    
+        return videogameCreated;
+        
+    } catch (error) {
+        console.log('error', error)
+    }
+
 }
 
 module.exports = {

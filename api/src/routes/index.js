@@ -45,7 +45,6 @@ router.get('/videogames', async (req, res) => {
 
 router.get('/videogames/:id', async (req, res) => {
     const { id } = req.params;
-    console.log('id', id)
     let response = await getVideoGameDetailById(id);
 
     res.send(response)
@@ -66,7 +65,6 @@ router.get('/genres', async (req, res) => {
 
 router.post('/videogame', async (req, res) => {
     let { name, description, platforms, genres, rating, img, releaseDate } = req.body;
-    console.log(req.body);
     const videogameCreated = await postGame(name, description, platforms, genres, rating, img, releaseDate);
 
     res.send(videogameCreated);
