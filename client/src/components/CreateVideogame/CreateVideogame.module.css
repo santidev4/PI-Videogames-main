@@ -49,7 +49,7 @@
 }
 .description_input{
     width: 500px;
-    height: 250px;
+    height: 200px;
 }
 .fourth_column{
   display: flex;
@@ -128,11 +128,9 @@
 }
 .btn_selected{
   background: #ffc107;
-  width: 70px;
-  height: 40px;
+  width: 60px;
+  height: 30px;
   border-radius: 20px 20px 20px 20px;
-  border: none;
-  outline: none;
   cursor: pointer;
   color: #fff;
 }

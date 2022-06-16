@@ -91,6 +91,10 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 detail: []
             }
+        case 'CREATE_VIDEOGAME':
+            return{
+                ...state
+            }
         default:
             return state;
     }

@@ -93,3 +93,14 @@ export function resetDetail(){
         }
 };
 
+export function createVideogame(payload){
+    return async function(dispatch){
+        const videogameCreated = axios.post(`http://localhost:3001/videogame`, payload);
+
+        return{
+            type: 'CREATE_VIDEOGAME',
+
+        }
+    }
+}
+

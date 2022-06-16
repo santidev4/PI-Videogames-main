@@ -23,9 +23,11 @@ export default function Home(){
     const data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
 
     useEffect(() => {
-        dispatch(getVideogames());
+        if(!allVideogames.length){
+            dispatch(getVideogames());
+        }
         dispatch(getGenres());
-    }, [dispatch]);
+    }, []);
     
 
 

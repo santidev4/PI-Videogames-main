@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link, useNavigate } from "react-router-dom";
-import { getGenres, getVideogames } from "../../redux/actions";
+import {  useNavigate } from "react-router-dom";
+import { getGenres, getVideogames, createVideogame } from "../../redux/actions";
 import style from "../CreateVideogame/CreateVideogame.module.css"
 
 export default function CreateVideogame(){
@@ -13,7 +13,7 @@ export default function CreateVideogame(){
     const platforms = [...new Set(videogames.reduce((r, a) => r.concat(a.platforms), []))];
 
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     let [input, setInput] = useState({
         name: '',
@@ -65,18 +65,54 @@ export default function CreateVideogame(){
     const { stars, rating, hovered, deselectedIcon, selectedIcon } = starState;
     
     const handleGenres = (e) => {
-        setInput({
-            ...input,
-            genres: [...input.genres, e.target.value]
-        })
+
+        if(!input.genres.includes(e)){
+            setInput({
+                ...input,
+                genres: [...new Set([...input.genres, e.target.value])]
+            })
+            
+        }
+        
     }
     const handlePlatforms = (e) => {
         setInput({
             ...input,
-            platforms: [...input.platforms, e.target.value]
+            platforms: [...new Set([...input.platforms, e.target.value])]
+        })
+    }
+    const handleDeleteGenre = (e) => {
+        // e.preventDefault();
+        console.log('e', e)
+        setInput({
+            ...input,
+            genres: input.genres.filter(genre => genre !== e)
+        });
+    };
+
+    const handleDeletePlatform = (e) => {
+        setInput({
+            ...input,
+            platforms: input.platforms.filter(platform => platform !== e)
         })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('input', input);
+        dispatch(createVideogame(input))
+        alert('Videogame Creado');
+        setInput({
+            name: '',
+            releaseDate: '',
+            img: '',
+            genres: [],
+            platforms: [],
+            description: '',
+            rating: 0
+        });
+        navigate('/home')
+    }
     
     return(
         <>
@@ -108,9 +144,16 @@ export default function CreateVideogame(){
                                 </select>
                                 <div className={style.selected_options}>
                                     {
-                                        input.genres?.map(el =>{
+                                        input.genres?.map((el, i) =>{
                                             return(
-                                                <button className={style.btn_selected}> {el} </button>
+                                                
+                                                <span key={i} 
+                                                className={style.btn_selected} 
+                                                onClick={() => handleDeleteGenre(el)}
+                                                name="genres"
+                                                value={el} > 
+                                                {el} 
+                                                </span>
                                             )
                                         })
                                     }
@@ -132,10 +175,16 @@ export default function CreateVideogame(){
 
                                 <div className={style.selected_options}>
                                 {
-                                    input.platforms?.map(el => {
+                                    input.platforms?.map((el, i) => {
                                         return(
-                                                    <button className={style.btn_selected}> {el} </button>
-                                        )
+                                                    <span key={i} 
+                                                    className={style.btn_selected} 
+                                                    onClick={() => handleDeletePlatform(el)}
+                                                    name='platforms'
+                                                    value={el} > 
+                                                    {el} 
+                                                    </span>                                        
+                                                )
                                     })
                                 }
               
@@ -178,12 +227,13 @@ export default function CreateVideogame(){
                         
 
                         <div className={style.div_create}>
-                            <button className={style.btn_create}>Crear</button>
+                            <button 
+                            className={style.btn_create}
+                            onClick={(e)=> handleSubmit(e)} >Crear</button>
                         </div>
                     </form>
                 </div>
             </div>
-
 
         </>
     )

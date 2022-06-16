@@ -224,11 +224,15 @@ const getGenres = async () => {
     else return dbGenres;
 };
 
-const postGame = async (name, description, platforms) => {
+const postGame = async (name, description, platforms, genres, rating, img, releaseDate) => {
     let videogameCreated = await Videogame.create({
         name,
         description,
-        platforms
+        platforms, 
+        genres, 
+        rating, 
+        img, 
+        releaseDate
     })
 
     return videogameCreated;
