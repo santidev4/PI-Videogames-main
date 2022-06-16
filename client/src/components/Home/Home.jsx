@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogames, getGenres, filterByGenres, sortByName, sortByRating, filterByName } from "../../redux/actions";
+import { getVideogames, getGenres, filterByGenres, sortByName, sortByRating, filterByName, filterCreated } from "../../redux/actions";
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
@@ -22,11 +22,11 @@ export default function Home(){
     const data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
 
     useEffect(() => {
-        if(!allVideogames.length){
+        // if(!allVideogames.length){
             dispatch(getVideogames());
-        }
+        // }
         dispatch(getGenres());
-    }, []);
+    }, [dispatch]);
     
 
 
@@ -73,6 +73,8 @@ export default function Home(){
         dispatch(filterByName(name));
         setName('');        
     }
+
+    
     
     return(
         <>

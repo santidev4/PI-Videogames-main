@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getApiVideogames, getVideogamesByName, getVideoGameDetailById, getGenres, postGame } = require('../controllers/index')
+const { getApiVideogames, getVideogamesByName, getVideoGameDetailById, getGenres, postGame, dbInfo } = require('../controllers/index')
 const axios = require('axios');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -21,13 +21,20 @@ const router = Router();
 
 router.get('/videogames', async (req, res) => {
     let apiVideogames = await getApiVideogames();
+    const dbVideogames = await dbInfo();
+    const allVideogames = apiVideogames.concat(dbVideogames);
     
-    const name = await req.query.name;
-    if(name){
+    const name = req.query.name;
+    if(!name){
+    
+        res.send(allVideogames);
+        console.log(dbVideogames)
+    }
+    else{
         const filteredVideogames = await getVideogamesByName(apiVideogames, name);
         filteredVideogames.length ? res.send(filteredVideogames) : res.send('No se encontro ningun videojuego con ese nombre')
-    }
-    else res.send(apiVideogames);
+        
+        }
 })
 
 

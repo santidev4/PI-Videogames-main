@@ -157,7 +157,17 @@ const getApiVideogames = async () => {
         }
 };
 
+// Traer videogames de la db
 
+const dbInfo = async () => {
+
+    try {
+        return await Videogame.findAll()
+        
+    } catch (error) {
+        console.log('error', error)
+    }
+}
 
 // GET /videogames?name="...":
 // Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
@@ -229,5 +239,6 @@ module.exports = {
     getVideogamesByName,
     getVideoGameDetailById,
     getGenres,
-    postGame
+    postGame,
+    dbInfo
 }
