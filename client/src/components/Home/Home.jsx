@@ -15,8 +15,7 @@ export default function Home(){
     const genres = useSelector(state => state.genres);
 
     const [currentPage, setCurrentPage] = useState(1);
-    // eslint-disable-next-line 
-    const [videogamesPerPage, setVidegoamesPerPage] = useState(15);
+    const [videogamesPerPage] = useState(15);
 
     const indexOfLastVideogame = currentPage * videogamesPerPage;
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;

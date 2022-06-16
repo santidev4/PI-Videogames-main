@@ -166,16 +166,6 @@ const getVideogamesByName = (arr, name) => {
     return arr.filter(el => el.name.toLowerCase().split(' ').includes(name.toLowerCase())).slice(0, 15)
 };
 
-// GET /videogame/{idVideogame}:
-// Obtener el detalle de un videojuego en particular
-// Debe traer solo los datos pedidos en la ruta de detalle de videojuego
-// Incluir los géneros asociados
-// [ ] Los campos mostrados en la ruta principal para cada videojuegos (imagen, nombre, y géneros)
-// [ ] Descripción
-// [ ] Fecha de lanzamiento
-// [ ] Rating
-// [ ] Plataformas
-
 const getVideoGameDetailById = async (id) => {
     try {
         let request = await axios(`${url}/${id}?key=${API_KEY}`)
@@ -196,10 +186,6 @@ const getVideoGameDetailById = async (id) => {
         console.log(error);
     }
 };
-
-// GET /genres:
-// Obtener todos los tipos de géneros de videojuegos posibles
-// En una primera instancia deberán traerlos desde rawg y guardarlos en su propia base de datos y luego ya utilizarlos desde allí
 
 const getGenres = async () => {
     const url = `https://api.rawg.io/api/genres?key=${API_KEY}`;

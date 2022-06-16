@@ -22,7 +22,7 @@ const router = Router();
 router.get('/videogames', async (req, res) => {
     let apiVideogames = await getApiVideogames();
     
-    const name = req.query.name;
+    const name = await req.query.name;
     if(name){
         const filteredVideogames = await getVideogamesByName(apiVideogames, name);
         filteredVideogames.length ? res.send(filteredVideogames) : res.send('No se encontro ningun videojuego con ese nombre')
