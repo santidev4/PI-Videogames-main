@@ -140,7 +140,7 @@ export default function CreateVideogame(){
                                 value={input.released} 
                                 name='released' 
                                 className={style.date_input} 
-                                onChange={(e)=> handleChange(e)}/>
+                                onChange={(e)=> handleChange(e)} />
                             </div>
                         </div>
 

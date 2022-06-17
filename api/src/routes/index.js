@@ -64,8 +64,8 @@ router.get('/genres', async (req, res) => {
 // Crea un videojuego en la base de datos
 
 router.post('/videogame', async (req, res) => {
-    let { name, description, platforms, genres, rating, img, releaseDate } = req.body;
-    const videogameCreated = await postGame(name, description, platforms, genres, rating, img, releaseDate);
+    let { name, description, platforms, genres, rating, img, released } = req.body;
+    const videogameCreated = await postGame(name, description, platforms, genres, rating, img, released);
 
     res.send(videogameCreated);
 })
