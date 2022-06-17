@@ -131,7 +131,7 @@ const getApiVideogames = async () => {
                     .then(res => res.results)
                     .catch(err => console.log(err))
                 response.push(request);
-            }
+            }   
     
             //Imagen
             // Nombre
@@ -188,10 +188,11 @@ const getVideoGameDetailById = async (id) => {
                     model: Genre,
                     as: 'genres',
                     attributes: ['id', 'name'],
-                    throuh: { attributes:[]}
+                    through: { attributes:[]}
                 }
             })
 
+            console.log('dbVideogame', dbVideogame)
             return [].concat(dbVideogame).map(el => {
                 return{
                   name: el.name,

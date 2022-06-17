@@ -31,6 +31,7 @@ export default function CreateVideogame(){
     }, [dispatch])
 
     const handleChange = (e) => {
+    
         setInput({
             ...input,
             [e.target.name] : e.target.value
@@ -55,6 +56,7 @@ export default function CreateVideogame(){
             rating: newRating
         })
         console.log('rating', input)
+        console.log('typeof input.released', typeof input.released)
     }
     const hoverRating = (rating) => {
         setStarState({
