@@ -259,6 +259,7 @@ const postGame = async (name, description, platforms, genres, rating, img, relea
 
         await videogameCreated.addGenres(genresInDb);
     
+        console.log('videogameCreated', videogameCreated)
         return videogameCreated;
         
     } catch (error) {

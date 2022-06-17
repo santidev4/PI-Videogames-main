@@ -31,7 +31,7 @@ router.get('/videogames', async (req, res) => {
         console.log(dbVideogames)
     }
     else{
-        const filteredVideogames = await getVideogamesByName(apiVideogames, name);
+        const filteredVideogames = await getVideogamesByName(allVideogames, name);
         filteredVideogames.length ? res.send(filteredVideogames) : res.send('No se encontro ningun videojuego con ese nombre')
         
         }
