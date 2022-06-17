@@ -180,7 +180,7 @@ const getVideoGameDetailById = async (id) => {
     try {
 
         if (typeof id === 'string' && id.includes('-')) {
-            return await Videogame.findByPk(id, {
+            let dbVideogame = await Videogame.findByPk(id, {
                 attributes: {
                     exclude: ['createdAt', 'updatedAt'],
                 },
@@ -191,13 +191,27 @@ const getVideoGameDetailById = async (id) => {
                     throuh: { attributes:[]}
                 }
             })
+
+            return [].concat(dbVideogame).map(el => {
+                return{
+                  name: el.name,
+                  id:  el.id,
+                  description: el.description,
+                  released: el.released,
+                  rating: el.rating,
+                  platforms: el.platforms,
+                  img: el.img,
+                  fromDb: el.fromDb,
+                  genres: el.genres.map(e => e.name)
+                }
+              })
         } else {
             let request = await axios(`${url}/${id}?key=${API_KEY}`)
                 
-            console.log(request)
+            console.log('request', request)
             const { background_image ,name, genres, description_raw, released, rating, platforms } = request.data;
-    
-            return {
+            
+            return [{
                 name,
                 description: description_raw,
                 img: background_image,
@@ -205,7 +219,7 @@ const getVideoGameDetailById = async (id) => {
                 released,
                 rating,
                 platforms: platforms.map(el => el.platform.name)
-            }
+            }]
             
         }
 
