@@ -7,6 +7,12 @@ const { Videogame, conn } = require('../../src/db.js');
 const agent = session(app);
 const videogame = {
   name: 'Super Mario Bros',
+  id: 'fcfabca9-7cce-4bce-9761-406e3675554c',
+  released: '2001:11:12',
+  rating: 5,
+  img: 'fsdfg',
+  platforms: ['sfg'],
+  description: 'sdfsd'
 };
 
 describe('Videogame routes', () => {

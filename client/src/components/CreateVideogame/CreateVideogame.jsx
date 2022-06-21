@@ -25,13 +25,43 @@ export default function CreateVideogame(){
         rating: 0
     })
 
+    const [errors, setErrors] = useState({
+        name: '',
+        platforms: '',
+        genres: '',
+        released: '',
+        description: '',
+        rating: '',
+        img: '',
+    })
+
+
     useEffect(() => {
         dispatch(getGenres());
         dispatch(getVideogames());
     }, [dispatch])
 
-    const handleChange = (e) => {
+    const validate = (input) => {
+        // const errors = {};
+        !input.name ? errors.name = 'Se debe completar un nombre' : errors.name = ''
+        !input.platforms.length ? errors.platforms = 'Se debe elegir al menos una plataforma': errors.platforms = ''
+        !input.genres.length ? errors.genres = 'Se debe elegir al menos un genero' : errors.genres = ''
+        !input.released ? errors.released = 'Se debe elegir una fecha' : errors.released = ''
+        !input.description ? errors.description = 'Se debe escribir una descripcion' : errors.description = ''
+        input.rating === 0 ? errors.rating = 'Se debe dar un rating' : errors.rating = '';
+        !input.img ? errors.img = 'Se debe agregar una imagen' : errors.img = ''
     
+        console.log('errors', errors);
+        return errors;
+    };
+
+    const handleChange = (e) => {
+        setErrors(validate({
+            ...input,
+            [e.target.name] : e.target.value
+
+        }))
+
         setInput({
             ...input,
             [e.target.name] : e.target.value
@@ -51,12 +81,14 @@ export default function CreateVideogame(){
             ...starState,
             rating: newRating
         });
+        setErrors(validate({
+            ...input,
+            rating: newRating
+        }))
         setInput({
             ...input,
             rating: newRating
         })
-        console.log('rating', input)
-        console.log('typeof input.released', typeof input.released)
     }
     const hoverRating = (rating) => {
         setStarState({
@@ -67,22 +99,19 @@ export default function CreateVideogame(){
     const { stars, rating, hovered, deselectedIcon, selectedIcon } = starState;
     
     const handleGenres = (e) => {
-
         if(!input.genres.includes(e)){
             setInput({
                 ...input,
                 genres: [...new Set([...input.genres, e.target.value])]
             })
-            
-        }
-        
-    }
+        };
+    };
     const handlePlatforms = (e) => {
         setInput({
             ...input,
             platforms: [...new Set([...input.platforms, e.target.value])]
         })
-    }
+    };
     const handleDeleteGenre = (e) => {
         // e.preventDefault();
         console.log('e', e)
@@ -114,13 +143,13 @@ export default function CreateVideogame(){
             rating: 0
         });
         navigate('/home')
-    }
+    };
     
     return(
         <>
             <div className={style.form_container}>
                 <div className={style.form_card}>
-                    <form action="">
+                    <form action="" >
 
                         <div className={style.first_column}>
                             <div className={style.single_input}>
@@ -131,6 +160,9 @@ export default function CreateVideogame(){
                                 name='name' 
                                 className={style.name_input} 
                                 onChange={(e)=> handleChange(e)} />
+                                {
+                                    errors.name && <p className={style.errors}> {errors.name} </p>
+                                }
                             </div>
                             <div className={style.single_input}>
                                 <label htmlFor="">Release Date</label>
@@ -141,6 +173,9 @@ export default function CreateVideogame(){
                                 name='released' 
                                 className={style.date_input} 
                                 onChange={(e)=> handleChange(e)} />
+                                {
+                                    errors.released && <p className={style.errors}> {errors.released} </p>
+                                }
                             </div>
                         </div>
 
@@ -151,7 +186,8 @@ export default function CreateVideogame(){
                                 name="genres" 
                                 id="" 
                                 className={style.genres_select} 
-                                onChange={(e) => handleGenres(e)}>
+                                onChange={(e) => handleGenres(e)}
+                                disabled={input.genres.length < 3 ? false : true} >
                                 <option selected disabled>Genres</option>
                                     {
                                         genres?.map(el =>(
@@ -160,6 +196,9 @@ export default function CreateVideogame(){
                                         ))
                                     }
                                 </select>
+                                    {
+                                        errors.genres && <p className={style.errors}> {errors.genres} </p>
+                                    }
                                 <div className={style.selected_options}>
                                     {
                                         input.genres?.map((el, i) =>{
@@ -183,7 +222,8 @@ export default function CreateVideogame(){
                                 name="platforms" 
                                 id="" 
                                 className={style.platforms_input} 
-                                onChange={(e) => handlePlatforms(e)} >
+                                onChange={(e) => handlePlatforms(e)}
+                                disabled={input.platforms.length < 3 ? false : true} >
                                 <option selected disabled>Platforms</option>
                                 {
                                     platforms?.map(el =>(
@@ -195,7 +235,9 @@ export default function CreateVideogame(){
                                     ))
                                 }
                                 </select>
-
+                                    {
+                                        errors.platforms && <p className={style.errors}> {errors.platforms} </p>
+                                    }
                                 <div className={style.selected_options}>
                                 {
                                     input.platforms?.map((el, i) => {
@@ -223,6 +265,9 @@ export default function CreateVideogame(){
                             name='description' 
                             className={style.description_input} 
                             onChange={(e)=> handleChange(e)}/>
+                            {
+                                errors.description && <p className={style.errors}> {errors.description} </p>
+                            }
                         </div>
                         <div className={style.fourth_column} >
                             <label htmlFor="img">img url</label>
@@ -231,6 +276,9 @@ export default function CreateVideogame(){
                             name="img" 
                             className={style.img_url} 
                         onChange={(e)=> handleChange(e)}/>
+                            {
+                                errors.img && <p className={style.errors}> {errors.img} </p>
+                            }
                         </div>
                         <div>
                             <div className={style.rating}  >
@@ -252,15 +300,22 @@ export default function CreateVideogame(){
                                 }
                             </span>
                         );
-                    })}
+                        })}
+                        {
+                            errors.rating && <p className={style.errors}> {errors.rating} </p>
+                        }
                             </div>
                         </div>
                         
 
                         <div className={style.div_create}>
                             <button 
-                            className={style.btn_create}
-                            onClick={(e)=> handleSubmit(e)} >Crear</button>
+                            type="submit"
+                            className={ Object.values(input).some(e => e === '' || e === [] || e === 0) ? style.btn_createDisabled : style.btn_create}
+                            onClick={(e)=> handleSubmit(e)}
+                            disabled={Object.values(input).some(e => e === '' || e === [] || e === 0)} >
+                            Crear
+                            </button>
                         </div>
                     </form>
                 </div>

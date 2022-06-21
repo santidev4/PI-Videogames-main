@@ -162,7 +162,34 @@ const getApiVideogames = async () => {
 const dbInfo = async () => {
 
     try {
-        return await Videogame.findAll()
+        let dbVideogame = await Videogame.findAll({
+        attributes:{
+          exclude: ["updatedAt", "createdAt"]
+        },
+        include: {
+        model: Genre,
+        as: "genres",
+        attributes:["name", "id"],
+        through: { attributes: [] },
+        }
+      });
+    //   console.log('dbVideogame', dbVideogame)
+      return [].concat(dbVideogame).map(el => {
+        const {name, id, description, released, rating, platforms, img, fromDb, genres} = el
+        return{
+          name,
+          id, 
+          description, 
+          released, 
+          rating, 
+          platforms, 
+          img, 
+          fromDb, 
+          genres,
+          genres: genres.map(e => e.name)
+          
+        }
+      })
         
     } catch (error) {
         console.log('error', error)
@@ -175,7 +202,7 @@ const dbInfo = async () => {
 const getVideogamesByName = (arr, name) => {
 
     let filteredVideogame = arr.filter(el => el.name.toLowerCase().split(' ').includes(name.toLowerCase())).slice(0, 15);
-    let err = ['error']
+    let err = 'error'
 
     if(filteredVideogame.length) return filteredVideogame;
     else return err

@@ -19,7 +19,7 @@ export default function Home(){
 
     const indexOfLastVideogame = currentPage * videogamesPerPage;
     const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
-    const data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
+    let data = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame);
 
     useEffect(() => {
         // if(!allVideogames.length){
@@ -28,8 +28,8 @@ export default function Home(){
         dispatch(getGenres());
     }, [dispatch]);
     
-
-
+    
+    // Paginado
     const paginationFunction = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -43,7 +43,7 @@ export default function Home(){
         if(currentPage < lastPage)  setCurrentPage(currentPage + 1)
     }
 
-    
+    // handlers
     const handleFilterByGenre = (e) => {
         e.preventDefault()
         dispatch(filterByGenres(e.target.value))
@@ -78,6 +78,8 @@ export default function Home(){
         e.preventDefault();
         dispatch(filterCreated(e.target.value))
     }
+
+    console.log('data', data)
     
     return(
         <>
@@ -92,10 +94,13 @@ export default function Home(){
             handleSortByRating={handleSortByRating}
             handleFilterCreated={handleFilterCreated} />
             
-            {
+          
+            {   
+            
                 data.length ? 
             
-            <>
+                 
+                <>
 
             <Pagination 
             videogamesPerPage={videogamesPerPage}
@@ -110,12 +115,19 @@ export default function Home(){
             <Pagination 
             videogamesPerPage={videogamesPerPage}
             allVideogames={allVideogames.length}
-            paginationFunction={paginationFunction} />
+            paginationFunction={paginationFunction}
+            paginationPrev={paginationPrev}
+            paginationNext={paginationNext}
+            currentPage={currentPage} />
 
             </>
 
-            : <Loader/>
 
+               
+
+            :
+            <Loader/> 
+            
             }
 
 

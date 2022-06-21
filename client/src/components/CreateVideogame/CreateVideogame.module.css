@@ -1,3 +1,7 @@
+body{
+  background-color: rgba(217, 164, 17, 0.5);
+}
+
 .form_container{
     display: flex;
     justify-content: center;
@@ -122,6 +126,19 @@
   color: #fff;
   margin-right: 20px;
 }
+.btn_createDisabled{
+  position: relative;
+  border-radius: 25px 25px 25px 25px;
+  border: 1px #ffc107;
+  width: 150px;
+  height: 50px;
+  /* border: none; */
+  /* outline: none; */
+  cursor:not-allowed ;
+  background: rgb(237, 236, 232);
+  color: #ffc107;
+  margin-right: 20px;
+}
 .selected_options{
   display: flex;
   flex-direction: row;
@@ -133,4 +150,10 @@
   border-radius: 20px 20px 20px 20px;
   cursor: pointer;
   color: #fff;
+}
+
+.errors{
+  color: red;
+  font-size: 14px;
+  font-style: bold;
 }
