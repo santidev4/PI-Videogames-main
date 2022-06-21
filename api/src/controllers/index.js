@@ -173,7 +173,12 @@ const dbInfo = async () => {
 // Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
 // Si no existe ningún videojuego mostrar un mensaje adecuado
 const getVideogamesByName = (arr, name) => {
-    return arr.filter(el => el.name.toLowerCase().split(' ').includes(name.toLowerCase())).slice(0, 15)
+
+    let filteredVideogame = arr.filter(el => el.name.toLowerCase().split(' ').includes(name.toLowerCase())).slice(0, 15);
+    let err = ['error']
+
+    if(filteredVideogame.length) return filteredVideogame;
+    else return err
 };
 
 const getVideoGameDetailById = async (id) => {

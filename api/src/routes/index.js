@@ -25,15 +25,14 @@ router.get('/videogames', async (req, res) => {
     const allVideogames = apiVideogames.concat(dbVideogames);
     
     const name = req.query.name;
-    if(!name){
-    
-        res.send(allVideogames);
-        console.log(dbVideogames)
+    if(name){
+        const filteredVideogames = await getVideogamesByName(allVideogames, name);
+        filteredVideogames.length ? res.send(filteredVideogames) : res.status(404).send(['No se encontro ningun videojuego con ese nombre'])
+
     }
     else{
-        const filteredVideogames = await getVideogamesByName(allVideogames, name);
-        filteredVideogames.length ? res.send(filteredVideogames) : res.send('No se encontro ningun videojuego con ese nombre')
-        
+        res.send(allVideogames);
+        console.log(dbVideogames)       
         }
 })
 
