@@ -77,7 +77,7 @@ export default function Home(){
 
     const handleFilterCreated = (e) => {
         e.preventDefault();
-        setCurrentPage(1);
+        // setCurrentPage(1);
         dispatch(filterCreated(e.target.value))
     };
 
