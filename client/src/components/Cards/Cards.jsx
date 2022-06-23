@@ -13,6 +13,7 @@ export default function Cards({data}){
         <div className={style.card_container}>
         
             {
+                data.includes('error') ?  <Error404 /> :
                 Array.isArray(data) ? data.map((el) => (
                     <Link to={`/card/${el.id}`}>
                         <Card 
@@ -23,6 +24,7 @@ export default function Cards({data}){
                          />
                     </Link>
                 ))
+                 
                 : <Error404 />
             }
         </div>

@@ -1,13 +1,9 @@
 const {default: axios} = require('axios');
 const { Videogame, Genre } = require('../db') 
 
-// GET https://api.rawg.io/api/games
-// GET https://api.rawg.io/api/games?search={game}
-// GET https://api.rawg.io/api/genres
-// GET https://api.rawg.io/api/games/{id}
-
 const { API_KEY } = process.env
 const url = 'https://api.rawg.io/api/games';
+
 
 const getApiVideogames = async () => {
 
