@@ -23,7 +23,7 @@ export default function CreateVideogame(){
         platforms: [],
         description: '',
         rating: 0
-    })
+    });
 
     const [errors, setErrors] = useState({
         name: '',
@@ -33,13 +33,12 @@ export default function CreateVideogame(){
         description: '',
         rating: '',
         img: '',
-    })
-
+    });
 
     useEffect(() => {
         dispatch(getGenres());
         dispatch(getVideogames());
-    }, [dispatch])
+    }, [dispatch]);
 
     const validate = (input) => {
         // const errors = {};
@@ -64,8 +63,7 @@ export default function CreateVideogame(){
         setErrors(validate({
             ...input,
             [e.target.name] : e.target.value
-
-        }))
+        }));
 
         setInput({
             ...input,
@@ -74,6 +72,8 @@ export default function CreateVideogame(){
         console.log('input', input)
     }
     
+    // Rating
+
     const [ starState, setStarState ] = useState({
         stars: [1, 2, 3, 4, 5],
         rating: 0,
@@ -233,8 +233,6 @@ export default function CreateVideogame(){
                                 {
                                     platforms?.map(el =>(
                                         <>
-                                            {/* <label htmlFor="">{el }</label>
-                                            <input type="checkbox" name='name' /> */}
                                             <option value={el}> {el} </option>
                                         </>
                                     ))
@@ -257,7 +255,6 @@ export default function CreateVideogame(){
                                                 )
                                     })
                                 }
-              
                                 </div>
 
                             </div>
@@ -288,24 +285,25 @@ export default function CreateVideogame(){
                         <div>
                             <div className={style.rating}  >
                                 <p htmlFor="" className={style.rating_title} >Rating</p>
-                                {stars.map(star => {
-                        return (
-                            <span
-                                key={star}
-                                style={{ cursor: 'pointer' }}
-                                onClick={() => { changeRating(star); }}
-                                onMouseEnter={() => { hoverRating(star); }}
-                                onMouseLeave={() => { hoverRating(0); }}
-                                
-                            >
-                                {rating < star ?
-                                    hovered < star ? deselectedIcon : selectedIcon
-                                    :
-                                    selectedIcon
+                                {
+                                    stars.map(star => {
+                                        return (
+                                            <span
+                                                key={star}
+                                                style={{ cursor: 'pointer' }}
+                                                onClick={() => { changeRating(star); }}
+                                                onMouseEnter={() => { hoverRating(star); }}
+                                                onMouseLeave={() => { hoverRating(0); }}
+                                            >
+                                                {rating < star ?
+                                                    hovered < star ? deselectedIcon : selectedIcon
+                                                    :
+                                                    selectedIcon
+                                                }
+                                            </span>
+                                    );
+                                    })
                                 }
-                            </span>
-                        );
-                        })}
                         {
                             errors.rating && <p className={style.errors}> {errors.rating} </p>
                         }

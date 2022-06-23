@@ -26,7 +26,7 @@ export default function Home(){
             dispatch(getVideogames());
         // }
         dispatch(getGenres());
-    }, [dispatch]);
+    }, []);
     
     
     // Paginado
@@ -66,14 +66,14 @@ export default function Home(){
 
     const handleInputChange = (e) => {
         setName(e.target.value)
-    }
+    };
     
     const handleSubmit = (e) => {
         e.preventDefault();
         setCurrentPage(1);
         dispatch(filterByName(name));
         setName('');        
-    }
+    };
 
     const handleFilterCreated = (e) => {
         e.preventDefault();

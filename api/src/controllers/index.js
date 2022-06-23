@@ -7,67 +7,6 @@ const url = 'https://api.rawg.io/api/games';
 
 const getApiVideogames = async () => {
 
-    // ASYNC / AWAIT CON ID
-
-    // try {
-    //     const cantidad = 15;
-    //     let videogames = []
-    
-    //     for (let i = 1; i <= cantidad; i++) {
-    //         let request = await axios(`https://api.rawg.io/api/games/${i}?key=${API_KEY}`)
-    //             .then(res => res.data)
-    //         videogames.push(request);
-    //     }
-        
-    //     let videogamesObj = videogames.map(el =>{
-    //         return{
-    //             name: el.name,
-    //             id: el.id,
-    //             img: el.background_image,
-    //             description: el.description,
-    //             released: el.released,
-    //             rating: el.rating,
-    //             platforms: el.platforms.map(el=> el.platform.name)
-    //         }
-    //     })
-    //     return videogamesObj
-        
-    // } catch (error) {
-    //     console.log(error);
-    // }
-
-    // PROMESAS CON ID
-
-
-    // const cantidad = 15;    // tal vez 100!
-    // let videogames = [];
-
-    // for (let i = 1; i <= cantidad; i++) {
-    //     let request = axios(`https://api.rawg.io/api/games/${i}?key=${API_KEY}`)
-    //         .then(res => res.data)
-    //         .catch(err => console.log(err))
-    //     videogames.push(request);
-    // };
-
-    // return Promise.all(videogames).then(
-    //     values =>{  
-    //        return values.map(el => {
-    //             return{
-    //                 name: el.name,
-    //                 id: el.id,
-    //                 img: el.background_image,
-    //                 description: el.description,
-    //                 released: el.released,
-    //                 rating: el.rating,
-    //                 platforms: el.platforms.map(el => el.platform.name)
-    //             }
-    //         })
-    //     },
-    //     reason => {
-    //         console.log('reason', reason);
-    //     }
-    // );
-
     //  PROMISES CON PAGES
 
     const response = [];
@@ -82,7 +21,6 @@ const getApiVideogames = async () => {
         response.push(request)
     }
     
-    const videogames = []
     return Promise.all(response).then(
                arr => {
                 return arr.flatMap(el => {
@@ -106,10 +44,7 @@ const getApiVideogames = async () => {
             }
         );
 
-   
-
         //  ASYNC   /   AWAIT       con pages
-
 
         // try {
         //     const pages = 5;
