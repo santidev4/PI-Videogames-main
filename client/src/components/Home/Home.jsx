@@ -47,18 +47,18 @@ export default function Home(){
     const handleFilterByGenre = (e) => {
         e.preventDefault()
         dispatch(filterByGenres(e.target.value))
-        setCurrentPage(1)
+        // setCurrentPage(1)
     }
     
     const handleSortByName = (e) => {
         e.preventDefault();
-        setCurrentPage(1);
+        // setCurrentPage(1);
         dispatch(sortByName(e.target.value))
     }
 
     const handleSortByRating = (e) => {
         e.preventDefault();
-        setCurrentPage(1);
+        // setCurrentPage(1);
         dispatch(sortByRating(e.target.value))
     }
 
@@ -70,7 +70,7 @@ export default function Home(){
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        setCurrentPage(1);
+        // setCurrentPage(1);
         dispatch(filterByName(name));
         setName('');        
     };
