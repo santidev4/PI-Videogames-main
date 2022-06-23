@@ -157,7 +157,7 @@ const getApiVideogames = async () => {
         }
 };
 
-// Traer videogames de la db
+///////////////////////////////////////
 
 const dbInfo = async () => {
 
@@ -194,11 +194,10 @@ const dbInfo = async () => {
     } catch (error) {
         console.log('error', error)
     }
-}
+};
 
-// GET /videogames?name="...":
-// Obtener un listado de las primeros 15 videojuegos que contengan la palabra ingresada como query parameter
-// Si no existe ningún videojuego mostrar un mensaje adecuado
+///////////////////////////////////////
+
 const getVideogamesByName = (arr, name) => {
 
     let filteredVideogame = arr.filter(el => el.name.toLowerCase().split(' ').includes(name.toLowerCase())).slice(0, 15);
@@ -207,6 +206,8 @@ const getVideogamesByName = (arr, name) => {
     if(filteredVideogame.length) return filteredVideogame;
     else return err
 };
+
+///////////////////////////////////////
 
 const getVideoGameDetailById = async (id) => {
     try {
@@ -222,9 +223,10 @@ const getVideoGameDetailById = async (id) => {
                     attributes: ['id', 'name'],
                     through: { attributes:[]}
                 }
-            })
+            });
 
-            console.log('dbVideogame', dbVideogame)
+            console.log('dbVideogame', dbVideogame);
+
             return [].concat(dbVideogame).map(el => {
                 return{
                   name: el.name,
@@ -236,10 +238,10 @@ const getVideoGameDetailById = async (id) => {
                   img: el.img,
                   fromDb: el.fromDb,
                   genres: el.genres.map(e => e.name)
-                }
-              })
+                };
+              });
         } else {
-            let request = await axios(`${url}/${id}?key=${API_KEY}`)
+            let request = await axios(`${url}/${id}?key=${API_KEY}`);
                 
             console.log('request', request)
             const { background_image ,name, genres, description_raw, released, rating, platforms } = request.data;
@@ -260,6 +262,8 @@ const getVideoGameDetailById = async (id) => {
         console.log(error);
     }
 };
+
+///////////////////////////////////////
 
 const getGenres = async () => {
     const url = `https://api.rawg.io/api/genres?key=${API_KEY}`;
@@ -283,6 +287,8 @@ const getGenres = async () => {
     }
     else return dbGenres;
 };
+
+///////////////////////////////////////
 
 const postGame = async (name, description, platforms, genres, rating, img, released) => {
 
@@ -311,8 +317,23 @@ const postGame = async (name, description, platforms, genres, rating, img, relea
         
     } catch (error) {
         console.log('error', error)
-    }
+    };
+};
 
+///////////////////////////////////////
+
+const deleteGame = async (id) => {
+
+    try {
+        const row = await Videogame.findOne({
+            where: {
+                id: id
+            }
+        });
+        if(row) await row.destroy();
+    } catch (error) {
+        console.log('error', error)
+    }
 }
 
 module.exports = {
@@ -321,5 +342,6 @@ module.exports = {
     getVideoGameDetailById,
     getGenres,
     postGame,
-    dbInfo
+    dbInfo,
+    deleteGame
 }

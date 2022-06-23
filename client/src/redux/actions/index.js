@@ -85,24 +85,28 @@ export function getDetail(payload){
                 console.log('error', error)
             }
         }
-}
+};
 
 export function resetDetail(){
     return{
         type: 'RESET_DETAIL'
-        }
+        };
 };
 
 export function createVideogame(payload){
-    return async function(dispatch){
-        const videogameCreated = axios.post(`http://localhost:3001/videogame`, payload);
+        axios.post(`http://localhost:3001/videogame`, payload);
 
         return{
             type: 'CREATE_VIDEOGAME',
 
-        }
-    }
+        }; 
 };
 
+export function deleteVideogame(payload) {
+   axios.delete(`http://localhost:3001/delete/${payload}`, payload);
 
+   return{
+    type: 'DELETE_VIDEOGAME'
+   }
+}
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, resetDetail } from "../../redux/actions";
+import { getDetail, resetDetail, deleteVideogame } from "../../redux/actions";
 import { useEffect } from "react";
 import style from "../Detail/Detail.module.css"
 import Loader from "../Loader/Loader"
@@ -11,28 +11,25 @@ export default function Detail(){
 
     const dispatch = useDispatch();
     const { id } = useParams();
-    // const [videogame, setVideogame] = React.useState([]); 
-    // const data = useSelector(state => state.detail);
     const videogame = useSelector(state => state.detail);
 
+    const navigate = useNavigate();
 
-    console.log(videogame);
-    console.log(id);
-    
+    console.log('videogame', videogame);
+    console.log('id', id)
+
     useEffect(() => {
         dispatch(getDetail(id));
         return ()=> dispatch(resetDetail())
-    }, [dispatch, id])
+    }, [dispatch, id]);
     
     
-
-
-    // Incluir los géneros asociados
-    // [ ] Los campos mostrados en la ruta principal para cada videojuegos (imagen, nombre, y géneros)
-    // [ ] Descripción
-    // [ ] Fecha de lanzamiento
-    // [ ] Rating
-    // [ ] Plataformas
+    const handleDeleteVideogame = () => {
+        // e.preventDefault();
+        dispatch(deleteVideogame(id));
+        alert('Juego eliminado')
+        navigate('/home')
+    };
 
     return(
         <>
@@ -80,6 +77,13 @@ export default function Detail(){
                     </div>
                 </div>
                 : <Loader/>
+            }
+
+            {
+                
+                id.includes('-') ? 
+                <button onClick={() => handleDeleteVideogame()} >Delete</button>
+                : null
             }
         </>
     )

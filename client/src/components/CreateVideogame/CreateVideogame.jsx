@@ -46,7 +46,12 @@ export default function CreateVideogame(){
         !input.name ? errors.name = 'Se debe completar un nombre' : errors.name = ''
         !input.platforms.length ? errors.platforms = 'Se debe elegir al menos una plataforma': errors.platforms = ''
         !input.genres.length ? errors.genres = 'Se debe elegir al menos un genero' : errors.genres = ''
-        !input.released ? errors.released = 'Se debe elegir una fecha' : errors.released = ''
+        
+        if(!input.released) errors.released = 'Debe elegir una fecha'
+        else if(input.released.slice(0, 4) < 1960) errors.released = 'Elija un año a partir de 1960'
+        else if(input.released.slice(0, 4) > 2022) errors.released = 'Elija un año menor a 2023'
+        else errors.released = '';
+
         !input.description ? errors.description = 'Se debe escribir una descripcion' : errors.description = ''
         input.rating === 0 ? errors.rating = 'Se debe dar un rating' : errors.rating = '';
         !input.img ? errors.img = 'Se debe agregar una imagen' : errors.img = ''

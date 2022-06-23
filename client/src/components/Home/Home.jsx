@@ -53,7 +53,6 @@ export default function Home(){
     const handleSortByName = (e) => {
         e.preventDefault();
         dispatch(sortByName(e.target.value))
-        // dispatch(getVideogames())
     }
 
     const handleSortByRating = (e) => {
@@ -64,7 +63,6 @@ export default function Home(){
     const [name, setName] = React.useState('');
 
     const handleInputChange = (e) => {
-        // e.preventDefault();
         setName(e.target.value)
     }
     
@@ -77,7 +75,7 @@ export default function Home(){
     const handleFilterCreated = (e) => {
         e.preventDefault();
         dispatch(filterCreated(e.target.value))
-    }
+    };
 
     console.log('data', data)
     
@@ -96,9 +94,7 @@ export default function Home(){
             
           
             {   
-            
                 data.length ? 
-            
                  
                 <>
 
@@ -110,7 +106,8 @@ export default function Home(){
             paginationNext={paginationNext}
             currentPage={currentPage} />
 
-            <Cards data={data} />
+            <Cards 
+            data={data} />
 
             <Pagination 
             videogamesPerPage={videogamesPerPage}
@@ -120,10 +117,7 @@ export default function Home(){
             paginationNext={paginationNext}
             currentPage={currentPage} />
 
-            </>
-
-
-               
+            </>  
 
             :
             <Loader/> 
