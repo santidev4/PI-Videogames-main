@@ -26,7 +26,7 @@ export default function Home(){
             dispatch(getVideogames());
         // }
         dispatch(getGenres());
-    }, [dispatch]);
+    }, []);
     
     
     // Paginado
@@ -52,11 +52,13 @@ export default function Home(){
     
     const handleSortByName = (e) => {
         e.preventDefault();
+        setCurrentPage(1);
         dispatch(sortByName(e.target.value))
     }
 
     const handleSortByRating = (e) => {
         e.preventDefault();
+        setCurrentPage(1);
         dispatch(sortByRating(e.target.value))
     }
 
@@ -68,12 +70,14 @@ export default function Home(){
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        setCurrentPage(1);
         dispatch(filterByName(name));
         setName('');        
     }
 
     const handleFilterCreated = (e) => {
         e.preventDefault();
+        setCurrentPage(1);
         dispatch(filterCreated(e.target.value))
     };
 

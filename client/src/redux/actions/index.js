@@ -3,7 +3,7 @@ import axios from 'axios';
 export function getVideogames(){
     return async function(dispatch){
         try {
-            const videogames = await axios('http://localhost:3001/videogames');
+            const videogames = await axios('/videogames');
             return dispatch({
                 type: 'GET_VIDEOGAMES',
                 payload: videogames.data
@@ -17,7 +17,7 @@ export function getVideogames(){
 export function getGenres(){
     return async function(dispatch){
         try {
-            const genres = await axios('http://localhost:3001/genres');
+            const genres = await axios('/genres');
             return dispatch({
                 type: 'GET_GENRES',
                 payload: genres.data
@@ -59,7 +59,7 @@ export function filterCreated(payload){
 export function filterByName(payload){
     return async function(dispatch){
         try {
-            let response = await axios(`http://localhost:3001/videogames?name=${payload}`);
+            let response = await axios(`/videogames?name=${payload}`);
             
             return dispatch({
                 type: 'FILTER_BY_NAME',
@@ -75,7 +75,7 @@ export function getDetail(payload){
     
     return async function(dispatch){
             try {
-                let response = await axios(`http://localhost:3001/videogames/${payload}`);
+                let response = await axios(`/videogames/${payload}`);
                 
                 return dispatch({
                     type: 'GET_DETAIL',
@@ -94,7 +94,7 @@ export function resetDetail(){
 };
 
 export function createVideogame(payload){
-        axios.post(`http://localhost:3001/videogame`, payload);
+        axios.post(`/videogame`, payload);
 
         return{
             type: 'CREATE_VIDEOGAME',
@@ -103,7 +103,7 @@ export function createVideogame(payload){
 };
 
 export function deleteVideogame(payload) {
-   axios.delete(`http://localhost:3001/delete/${payload}`, payload);
+   axios.delete(`/delete/${payload}`, payload);    // http://localhost:3001/delete/
 
    return{
     type: 'DELETE_VIDEOGAME'
