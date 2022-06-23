@@ -32,15 +32,15 @@ function rootReducer(state = initialState, action) {
             let sortedVideogames;
             if(action.payload === 'ASC'){
                 sortedVideogames = state.videogames.slice(0).sort((a, b) => {
-                    if(a.name < b.name) return -1;
-                    else if(a.name > b.name) return 1;
+                    if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                    else if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                     else return 0
                 })
             }
             else{
                 sortedVideogames = state.videogames.slice(0).sort((a, b) => {
-                    if(a.name > b.name) return -1;
-                    else if(a.name < b.name) return 1;
+                    if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                    else if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
                     else return 0
             })} 
             return{
@@ -65,7 +65,7 @@ function rootReducer(state = initialState, action) {
                 videogames: sortedByRating
             };
         case 'FILTER_CREATED':
-            const allVideogames1 = state.allVideogames;
+            {const allVideogames1 = state.allVideogames;
             let filteredByCreated;
             if(action.payload === 'All')    filteredByCreated = allVideogames1;
             else if(action.payload === 'Created')   filteredByCreated = allVideogames1.filter(el => el.fromDb);
@@ -75,7 +75,7 @@ function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 videogames: filteredByCreated
-            }
+            }}
         case 'FILTER_BY_NAME':
             return{
                 ...state,

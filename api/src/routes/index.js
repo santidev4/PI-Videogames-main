@@ -8,9 +8,9 @@ const axios = require('axios');
 const router = Router();
 
 router.get('/videogames', async (req, res) => {
-    let apiVideogames = await getApiVideogames();
+    const apiVideogames = await getApiVideogames();
     const dbVideogames = await dbInfo();
-    const allVideogames = await apiVideogames.concat(dbVideogames);
+    const allVideogames = apiVideogames.concat(dbVideogames);
     
     const name = req.query.name;
     if(name){
@@ -20,7 +20,7 @@ router.get('/videogames', async (req, res) => {
     }
     else{
         res.send(allVideogames);
-        console.log(dbVideogames)       
+        // console.log(dbVideogames)       
         }
 });
 
@@ -53,7 +53,6 @@ router.post('/videogame', async (req, res) => {
 
 router.delete('/delete/:id', async (req, res) => {
     const { id } = req.params;
-    console.log('id', id)
     const deletedGame = await deleteGame(id);
     return deletedGame
 } )

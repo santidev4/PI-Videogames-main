@@ -74,87 +74,80 @@ const getApiVideogames = async () => {
 
     //  PROMISES CON PAGES
 
-    // const videogames = [];
-    // const url = 'https://api.rawg.io/api/games?key=79d4844fcfec46a0b1a2be9f7b9a19dd&page=';
-    // const pages = 2;
+    const response = [];
+    const url = `https://api.rawg.io/api/games?key=${API_KEY}&page=`;
+    const pages = 5;
 
-    // for (let i = 1; i <= pages; i++) {
-    //     let request = axios(`${url+i}`)
-    //         .then(res=> res.data)
-    //         .then(res => res.results)
-    //         .catch(err => console.log(err))
-    //     videogames.push(request)
-    // }
-
-    // const response = []
-    // return Promise.all(videogames).then(
-    //         values =>{  
-    //             // console.log('values[0]' ,values[0])
-
-    //         //    return values[0].map(el => {
-    //         //         return{
-    //         //             name: el.name,
-    //         //             id: el.id,
-    //         //             img: el.background_image,
-    //         //             description: el.description,
-    //         //             released: el.released,
-    //         //             rating: el.rating,
-    //         //             platforms: el.platforms.map(el => el.platform.name)
-    //         //         }
-    //         //     })
-    //             values.forEach(arr => {
-    //                 arr.map(el => {
-    //                     return response.push({
-    //                         name: el.name
-    //                     })
-    //                 })
-    //             })
-    //             console.log(response);
-    //         },
-    //         reason => {
-    //             console.log('reason', reason);
-    //         }
-    //     );
+    for (let i = 1; i <= pages; i++) {
+        let request = axios(`${url+i}`)
+            .then(res=> res.data)
+            .then(res => res.results)
+            .catch(err => console.log(err))
+        response.push(request)
+    }
     
+    const videogames = []
+    return Promise.all(response).then(
+               arr => {
+                return arr.flatMap(el => {
+                    return el.map(e => {
+                        console.log('e', e)
+                       return {
+                        name: e.name,
+                        id: e.id,
+                        img: e.background_image,
+                        description: e.description,
+                        genres: e.genres.map(el => el.name),
+                        released: e.released,
+                        rating: e.rating,
+                        platforms: e.platforms.map(el => el.platform.name)
+                       }
+                    })
+                })
+               },
+            reason => {
+                console.log('reason', reason);
+            }
+        );
+
+   
 
         //  ASYNC   /   AWAIT       con pages
 
 
-        try {
-            const pages = 5;
-            const response = [];
-            const url = `https://api.rawg.io/api/games?key=${API_KEY}&page=`;
+        // try {
+        //     const pages = 5;
+        //     const response = [];
+        //     const url = `https://api.rawg.io/api/games?key=${API_KEY}&page=`;
 
-            for (let i = 1; i <= pages; i++) {
-                let request = await axios(`${url+i}`)
-                    .then(res=> res.data)
-                    .then(res => res.results)
-                    .catch(err => console.log(err))
-                response.push(request);
-            }   
+        //     for (let i = 1; i <= pages; i++) {
+        //         let request = await axios(`${url+i}`)
+        //             .then(res=> res.data)
+        //             .then(res => res.results)
+        //             .catch(err => console.log(err))
+        //         response.push(request);
+        //     }   
     
-            //Imagen
-            // Nombre
-            // Géneros
-            const videogames = [];
-            response.map(arr => {
-                arr.map(el => {
-                    videogames.push({
-                        id: el.id,
-                        name: el.name,
-                        img: el.background_image,
-                        genres: el.genres.map(el => el.name),
-                        rating: el.rating,
-                        platforms: el.platforms.map(el => el.platform.name)
-                    })
-                })
-            })
+        //     const videogames = [];
 
-            return videogames
+        //     response.map(arr => {
+        //         arr.map(el => {
+        //             videogames.push({
+        //                 id: el.id,
+        //                 name: el.name,
+        //                 img: el.background_image,
+        //                 genres: el.genres.map(el => el.name),
+        //                 rating: el.rating,
+        //                 platforms: el.platforms.map(el => el.platform.name)
+        //             })
+        //         })
+        //     })
+
+        //     return videogames
             
-        } catch (error) {
-            console.log(error);
-        }
+        // } catch (error) {
+        //     console.log(error);
+        // };
 };
 
 ///////////////////////////////////////

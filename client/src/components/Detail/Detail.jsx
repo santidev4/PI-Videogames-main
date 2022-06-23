@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, resetDetail, deleteVideogame } from "../../redux/actions";
+import { getDetail, resetDetail, deleteVideogame, getVideogames } from "../../redux/actions";
 import { useEffect } from "react";
 import style from "../Detail/Detail.module.css"
 import Loader from "../Loader/Loader"
@@ -29,6 +29,7 @@ export default function Detail(){
         dispatch(deleteVideogame(id));
         alert('Juego eliminado')
         navigate('/home')
+        dispatch(getVideogames())
     };
 
     return(
