@@ -26,7 +26,7 @@ export default function Home(){
             dispatch(getVideogames());
         // }
         dispatch(getGenres());
-    }, [dispatch]);
+    }, []);
     
     
     // Paginado
